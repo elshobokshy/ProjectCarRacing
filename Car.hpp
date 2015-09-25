@@ -6,7 +6,7 @@
 
 #include <SFML/Graphics/Drawable.hpp>
 #include <SFML/Graphics/Transformable.hpp>
-#include <SFML/Graphics/Sprites.hpp>
+#include <SFML/Graphics/Sprite.hpp>
 
 
 namespace sf
@@ -18,7 +18,7 @@ namespace sf
 class Car : public sf::Drawable, sf::Transformable
 {
 	public:
-		Car(const sf::Texture &tex, unsigned int speed, unsigned int acceleration);
+		Car(sf::Texture &tex, unsigned int speed, unsigned int acceleration);
 
 
 	protected:
@@ -31,7 +31,7 @@ class Car : public sf::Drawable, sf::Transformable
 		//HitBox m_hitBox;i
 
 		//Constants
-		Vector2f dimension;
+		sf::Vector2f dimension;
 };
 
 
