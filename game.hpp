@@ -1,7 +1,10 @@
 #ifndef DEF_GAME_HPP
 #define DEF_GAME_HPP
 
-class sf::RenderWindow;
+namespace sf
+{
+	class RenderWindow;
+}
 
 void game(sf::RenderWindow &window);
 

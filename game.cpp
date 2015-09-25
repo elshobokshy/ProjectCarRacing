@@ -2,8 +2,10 @@
 
 #include <SFML/Graphics/RenderWindow.hpp>
 
+#include <iostream>
 
-void getEvents(sf::RenderWindow &window);
+
+void getEvents(sf::RenderWindow &window)
 {
 
 
@@ -32,10 +34,12 @@ void game(sf::RenderWindow &window)
 		//moving cars
 		//
 
-		// \game physics
+		// \game physics /////////////////////////
+
+		std::cout<< "boucle\n";
 
 		
-		window.clear(sf::Color::black);
+		window.clear(sf::Color::Black);
 		//game display
 
 		window.display();
