@@ -48,7 +48,7 @@ void game(sf::RenderWindow &window)
 	//main loop
 	while(true)
 	{
-		getEvents(window);
+		//getEvents(window);
 
 		//game physic/////////////////////////////
 		
