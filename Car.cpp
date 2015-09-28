@@ -4,14 +4,14 @@
 #include <SFML/Graphics/Texture.hpp>
 #include <SFML/Graphics/RenderTarget.hpp>
 
-
+//CORRECTIONS TODO
 Car::Car(sf::Texture &tex, unsigned int speed, unsigned int acceleration)
 {
 	m_speed = speed;
 	m_acceleration = acceleration;
 	m_sprite.setTexture(tex);
 
-	sf::Vector2u texSize(tex.getSize());
+	sf::Vector2u texSize(tex.getSize()); //WARNING : this function seems not returning the value we need : to fix.
 	m_sprite.setOrigin(float(texSize.x)/2.f, float(texSize.y)/2.f);
 	//m_hitBox.setType(collision::hitBox::type);
 }
