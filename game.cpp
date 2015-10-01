@@ -34,8 +34,11 @@ void getEvents(sf::RenderWindow &window)
 void game(sf::RenderWindow &window)
 {
 	//image loading
+	std::vector<sf::Texture> texTab;
 	std::vector<Car> carsTab;
-	loadCars(carsTab);
+
+	loadCars(carsTab, texTab);
+
 
 	//sound loading
 	
@@ -48,7 +51,7 @@ void game(sf::RenderWindow &window)
 	//main loop
 	while(true)
 	{
-		//getEvents(window);
+		getEvents(window);
 
 		//game physic/////////////////////////////
 		
@@ -70,7 +73,7 @@ void game(sf::RenderWindow &window)
 }
 
 
-void loadCars(std::vector<Car> &carsTab)
+void loadCars(std::vector<Car> &carsTab, std::vector<sf::Texture> &texTab)
 {
 	try
 	{
@@ -81,7 +84,8 @@ void loadCars(std::vector<Car> &carsTab)
 			throw error;
 		}
 
-		carsTab.push_back(Car(texCar, CAR_SPEED, CAR_ACCELERATION));
+		texTab.push_back(texCar);
+		carsTab.push_back(Car(texTab[0], CAR_SPEED, CAR_ACCELERATION));
 	}
 	catch(std::exception &except)
 	{
