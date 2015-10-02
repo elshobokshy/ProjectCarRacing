@@ -8,8 +8,9 @@ int main(int argc, char **argv)
 
 	//menu
 	game(window);
-	
+
 	// \menu
+	// C'EST ISLAM QUI ECRIIIIIIIIIIIIIITTTTTTTTTTTTTTTTT xD
 
 	return EXIT_SUCCESS;
 }
