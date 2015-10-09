@@ -38,7 +38,8 @@ class Map : public sf::Drawable
 
 		virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const;
 	private:
-		std::list m_BlockList;
+		std::list<RoadBlock> m_BlockList;
+
 };
 
 

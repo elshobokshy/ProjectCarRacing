@@ -11,7 +11,7 @@ Map::Map()
 
 Map::Map(const std::string &fileName)
 {
-    RoadBlock(RoadBlock::roadType, RoadBlock::rotation);
+    loadFromFile(fileName)
 }
 
 
@@ -44,10 +44,9 @@ void loadFromFile(const std::string &fileName)
 
 void Map::draw(sf::RenderTarget &target, sf::RenderStates states) const
 {
-    states *= getTransform();
     for(std::list<RoadBlock>::iterator it=m_BlockList.begin();it != m_BlockList.end(); it++)
     {
-
+        target.draw(*it, states);
     }
 }
 
