@@ -46,10 +46,10 @@ class RoadBlock : public sf::Drawable, public sf::Transformable
 		void setType(roadType t);
 
 
-
-		static const sf::Texture straightTexture(STRAIGHT_TEXTURE_NAME);
-		static const sf::Texture cornerTexture(CORNER_TEXTURE_NAME);
-		static const sf::Texture grassTexture(GRASS_TEXTURE_NAME);
+		//standard shared textures
+		static const sf::Texture straightTexture;
+		static const sf::Texture cornerTexture;
+		static const sf::Texture grassTexture;
 		
 		virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const;
 	private:

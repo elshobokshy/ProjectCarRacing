@@ -1,6 +1,23 @@
 #include "RoadBlock.hpp"
 
 #include <SFML/Graphics/RenderTarget.hpp>
+#include "FileLoader.hpp"
+
+
+
+const sf::Texture straightTexture = createFromFile<sf::Texture>(STRAIGHT_TEXTURE_NAME);
+const sf::Texture cornerTexture = createFromFile<sf::Texture>(CORNER_TEXTURE_NAME);
+const sf::Texture grassTexture = createFromFile<sf::Texture>(GRASS_TEXTURE_NAME);
+
+
+
+
+const sf::Texture RoadBlock::straightTexture;
+const sf::Texture RoadBlock::cornerTexture;
+const sf::Texture RoadBlock::grassTexture;
+
+
+
 
 
 RoadBlock::RoadBlock()
@@ -62,10 +79,10 @@ void RoadBlock::setType(roadType t)
 	switch(t)
 	{
 		case straight:
-			m_sprite.setTexture(straightTexture);
+			m_sprite.setTexture(RoadBlock::straightTexture);
 			break;
 		case corner:
-			m_sprite.setTexture(cornerTexture);
+			m_sprite.setTexture(RoadBlock::cornerTexture);
 			break;
 		default:
 			break;
@@ -75,7 +92,7 @@ void RoadBlock::setType(roadType t)
 
 void RoadBlock::draw(sf::RenderTarget &target, sf::RenderStates states) const
 {
-	states *= getTransform();
+	states.transform *= getTransform();
 
 	target.draw(m_sprite, states);
 }

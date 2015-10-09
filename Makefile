@@ -5,7 +5,7 @@ EXEC=carRacing
 
 all: $(EXEC)
 
-carRacing: main.o Car.o collision.o game.o OpenFileError.o RoadBlock.o
+carRacing: main.o Car.o collision.o game.o OpenFileError.o RoadBlock.o FileLoader.o
 	$(CC) -o $@ $^ $(LDFLAGS)
 
 %.o: %.cpp
