@@ -19,7 +19,7 @@ namespace sf
 
 static const std::string STRAIGHT_TEXTURE_NAME("gameData/images/straight.png");
 static const std::string CORNER_TEXTURE_NAME("gameData/images/corner.png");
-static const std::string GRASS_TEXTURE_NAME("gameDate/images/grass.png");
+static const std::string GRASS_TEXTURE_NAME("gameData/images/grass2.png");
 
 
 class RoadBlock : public sf::Drawable, public sf::Transformable

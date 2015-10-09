@@ -20,6 +20,14 @@ void getEvents(sf::RenderWindow &window)
 				exit(EXIT_SUCCESS);
 				break;
 			case sf::Event::KeyPressed:
+				switch(event.key.code)
+				{
+					case sf::Keyboard::Escape:
+						exit(EXIT_SUCCESS);
+						break;
+					default:
+						break;
+				}
 				break;
 			case sf::Event::KeyReleased:
 				break;
@@ -59,8 +67,6 @@ void game(sf::RenderWindow &window)
 		//
 
 		// \game physics /////////////////////////
-
-		std::cout<< "boucle\n";
 
 		
 		window.clear(sf::Color::Black);
