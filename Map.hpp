@@ -6,7 +6,8 @@
 
 
 #include <SFML/Graphics/RenderStates.hpp>
-#include <list>
+#include <list>s
+#include <fstream>
 #include "RoadBlock.hpp"
 
 
@@ -30,7 +31,7 @@ class Map : public sf::Drawable
 		Map(const std::string &fileName);
 
 		void loadFromFile(const std::string &fileName);
-		
+
 
 
 
