@@ -1,13 +1,17 @@
 #include "RoadBlock.hpp"
 
+#include <SFML/Graphics/RenderTarget.hpp>
+
 
 RoadBlock::RoadBlock()
 {
 }
 
 
-RoadBlock::RoadBlock(const sf::Texture &texture, type t, rotation r)
+RoadBlock::RoadBlock(const sf::Texture &texture, roadType t, rotation r, const sf::Vector2f &pos)
 {
+	setPosition(pos);
+
 	m_sprite.setTexture(texture);
 	setType(t);
 	
@@ -19,13 +23,12 @@ RoadBlock::RoadBlock(const sf::Texture &texture, type t, rotation r)
 
 
 
-RoadBlock::RoadBlock(type t, rotation r)
+RoadBlock::RoadBlock(roadType t, rotation r, const sf::Vector2f &pos)
 {
+	setPosition(pos);
+
 	setRotation(r);
 	setType(t);
-
-	sf::Vector2u texSize(texture.getSize());
-	m_sprite.setOrigin(float(texSize.x)/2.f, float(texSize.y)/2.f);
 }
 
 
@@ -52,7 +55,7 @@ void RoadBlock::setRotation(rotation r)
 
 
 
-void RoadBlock::setType(type t)
+void RoadBlock::setType(roadType t)
 {
 	m_type = t;
 
@@ -70,3 +73,9 @@ void RoadBlock::setType(type t)
 }
 
 
+void RoadBlock::draw(sf::RenderTarget &target, sf::RenderStates states) const
+{
+	states *= getTransform();
+
+	target.draw(m_sprite, states);
+}

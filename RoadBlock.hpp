@@ -4,49 +4,58 @@
 
 #include <SFML/Graphics/Drawable.hpp>
 #include <SFML/Graphics/Transformable.hpp>
+#include <SFML/Graphics/RenderStates.hpp>
 #include <SFML/Graphics/Texture.hpp>
-
+#include <SFML/System/Vector2.hpp>
+#include <SFML/Graphics/Sprite.hpp>
 
 #include <string>
 
+namespace sf
+{
+	class RenderTarget;
+}
 
-const std::string STRAIGHT_TEXTURE_NAME("gameData/images/straight.png");
-const std::string CORNER_TEXTURE_NAME("gameData/images/corner.png");
+
+static const std::string STRAIGHT_TEXTURE_NAME("gameData/images/straight.png");
+static const std::string CORNER_TEXTURE_NAME("gameData/images/corner.png");
+static const std::string GRASS_TEXTURE_NAME("gameDate/images/grass.png");
 
 
 class RoadBlock : public sf::Drawable, public sf::Transformable
 {
-	enum type
-	{
-		straight, corner
-	}
-
-	enum rotation //clockwise
-	{
-		standard, right, left, down
-	}
-
 	public:
+		enum roadType
+		{
+			straight, corner
+		};
+
+		enum rotation //clockwise
+		{
+			standard, right, left, down
+		};
+
+	
 		RoadBlock();
-		RoadBlock(const sf::Texture &texture, type t, rotation r);
-		RoadBlock(type t, rotation r);
+		RoadBlock(const sf::Texture &texture, roadType t, rotation r, const sf::Vector2f &pos);
+		RoadBlock(roadType t, rotation r, const sf::Vector2f &pos);
 
 
 
 		void setRotation(rotation r);
-		void setType(type t);
+		void setType(roadType t);
 
 
 
 		static const sf::Texture straightTexture(STRAIGHT_TEXTURE_NAME);
 		static const sf::Texture cornerTexture(CORNER_TEXTURE_NAME);
-
+		static const sf::Texture grassTexture(GRASS_TEXTURE_NAME);
 		
 		virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const;
 	private:
 		sf::Sprite m_sprite;
-		type m_type;
-}
+		roadType m_type;
+};
 
 
 
