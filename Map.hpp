@@ -6,16 +6,11 @@
 
 
 #include <SFML/Graphics/RenderStates.hpp>
-#include <list>s
+#include <list>
 #include <fstream>
 #include "RoadBlock.hpp"
+#include <string>
 
-
-
-namespace std
-{
-	class string;
-}
 
 namespace sf
 {
