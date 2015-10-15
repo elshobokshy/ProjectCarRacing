@@ -6,6 +6,7 @@ namespace sf
 	class RenderWindow;
 }
 
+
 namespace mapEdit
 {
 	void getEvents(sf::RenderWindow &window);

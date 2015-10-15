@@ -8,6 +8,9 @@
 #include "Map.hpp"
 
 #include <iostream>
+#include <list>
+
+
 
 
 
@@ -48,17 +51,17 @@ namespace mapEdit
 	void mapEdit(sf::RenderWindow &window)
 	{
 		RoadBlock cursorBlock(RoadBlock::straight, RoadBlock::standard, sf::Vector2f(200, 200)); //block that will be drawn under the cusor, for the user to know what he is going to use
-
+		
 
 	
 		while(true)
 		{
 			mapEdit::getEvents(window);
 			
-			/*sf::Vector2i cursorBlockPosition = sf::Mouse::getPosition(window); //get the position, relative to the window
+			sf::Vector2i cursorBlockPosition = sf::Mouse::getPosition(window); //get the position, relative to the window
 			cursorBlock.setPosition( float(cursorBlockPosition.x), float(cursorBlockPosition.y) );
 
-			std::cout<< cursorBlockPosition.x<< " ; "<< cursorBlockPosition.y<< '\n';*/
+			//std::cout<< cursorBlockPosition.x<< " ; "<< cursorBlockPosition.y<< '\n';
 
 			//edit the map
 		

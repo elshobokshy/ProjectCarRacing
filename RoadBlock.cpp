@@ -5,16 +5,10 @@
 
 
 
-const sf::Texture straightTexture = createFromFile<sf::Texture>(STRAIGHT_TEXTURE_NAME);
-const sf::Texture cornerTexture = createFromFile<sf::Texture>(CORNER_TEXTURE_NAME);
-const sf::Texture grassTexture = createFromFile<sf::Texture>(GRASS_TEXTURE_NAME);
+const sf::Texture RoadBlock::straightTexture = createFromFile<sf::Texture>(STRAIGHT_TEXTURE_NAME);
+const sf::Texture RoadBlock::cornerTexture = createFromFile<sf::Texture>(CORNER_TEXTURE_NAME);
+const sf::Texture RoadBlock::grassTexture = createFromFile<sf::Texture>(GRASS_TEXTURE_NAME);
 
-
-
-
-const sf::Texture RoadBlock::straightTexture;
-const sf::Texture RoadBlock::cornerTexture;
-const sf::Texture RoadBlock::grassTexture;
 
 
 
