@@ -8,8 +8,6 @@
 #include "Map.hpp"
 
 #include <iostream>
-#include <list>
-
 
 
 
@@ -43,6 +41,8 @@ namespace mapEdit
 						case sf::Keyboard::Escape:
 							exit(EXIT_SUCCESS);
 							break;
+						case sf::Keyboard::Space:
+							action.placeUnplace = true;
 						default:
 							break;
 					}
@@ -52,11 +52,13 @@ namespace mapEdit
 				case sf::Event::MouseButtonPressed:
 					switch(event.mouseButton.button)
 					{
-						case sf::Mouse::right:
+						case sf::Mouse::Right:
 							action.rotation++;
 							break;
-						case sf::Mouse::left:
+						case sf::Mouse::Left:
 							action.rotation--;
+							break;
+						default:
 							break;
 					}
 					break;
@@ -86,13 +88,14 @@ namespace mapEdit
 			cursorBlock.setPosition( float(cursorBlockPosition.x), float(cursorBlockPosition.y) );
 
 
-			if(action.placeUnplace)
-			{
-				editedMap.push_back(RoadBlock(action.roadType, action.rotation, sf::Vector2f(0, 0) /*TODO*/));
-			}
 
 			
-			//edit the map
+			if(action.placeUnplace)
+			{
+				editedMap.push_back(RoadBlock(action.rtype, action.rotation, sf::Vector2f(0, 0) /*TODO*/));
+				std::cout<< static_cast<int>(action.rtype)<< " ; "<< static_cast<int>(action.rotation)<< '\n';
+			}
+
 			
 
 		

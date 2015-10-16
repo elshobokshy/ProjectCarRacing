@@ -9,9 +9,13 @@ const sf::Texture RoadBlock::straightTexture = createFromFile<sf::Texture>(STRAI
 const sf::Texture RoadBlock::cornerTexture = createFromFile<sf::Texture>(CORNER_TEXTURE_NAME);
 const sf::Texture RoadBlock::grassTexture = createFromFile<sf::Texture>(GRASS_TEXTURE_NAME);
 
+
+
 RoadBlock::RoadBlock()
 {
 }
+
+
 
 RoadBlock::RoadBlock(const sf::Texture &texture, roadType t, rotation r, const sf::Vector2f &pos)
 {
@@ -25,6 +29,9 @@ RoadBlock::RoadBlock(const sf::Texture &texture, roadType t, rotation r, const s
 	
 	setRotation(r);
 }
+
+
+
 
 RoadBlock::RoadBlock(roadType t, rotation r, const sf::Vector2f &pos)
 {
@@ -52,6 +59,8 @@ void RoadBlock::setRotation(rotation r)
 	}
 }
 
+
+
 void RoadBlock::setType(roadType t)
 {
 	m_type = t;
@@ -69,10 +78,13 @@ void RoadBlock::setType(roadType t)
 	}
 }
 
+
+
+
 RoadBlock::rotation RoadBlock::getRotation()
 {
 	float r = m_sprite.getRotation();
-	switch(r)
+	switch(int(r))
 	{
 		case 90:
 			return right;
@@ -86,17 +98,25 @@ RoadBlock::rotation RoadBlock::getRotation()
 		default:
 			break;
 	}
+	return standard; //only to dodge a warning
 }
+
+
 
 RoadBlock::roadType RoadBlock::getRType()
 {
 	return m_type;
 }
 
-sf::Vector2f Roadblock::getPosition()
+
+
+sf::Vector2f RoadBlock::getPosition()
 {
-	return m.sprite.getPosition();
+	return m_sprite.getPosition();
 }
+
+
+
 
 void RoadBlock::draw(sf::RenderTarget &target, sf::RenderStates states) const
 {
@@ -107,14 +127,15 @@ void RoadBlock::draw(sf::RenderTarget &target, sf::RenderStates states) const
 
 
 
-RoadBlock::rotation operator++(RoadBlock::rotation &r, 0)
+
+RoadBlock::rotation operator++(RoadBlock::rotation &r, int nn)
 {
 	RoadBlock::rotation ans(r); //answer
 	switch(r)
 	{
 		case RoadBlock::standard:
 			r = RoadBlock::right;
-			break,
+			break;
 		case RoadBlock::right:
 			r = RoadBlock::down;
 			break;
@@ -133,14 +154,15 @@ RoadBlock::rotation operator++(RoadBlock::rotation &r, 0)
 
 
 
-RoadBlock::rotation operator--(RoadBlock::rotation &r, 0)
+
+RoadBlock::rotation operator--(RoadBlock::rotation &r, int nn)
 {
 	RoadBlock::rotation ans(r); //answer
 	switch(r)
 	{
 		case RoadBlock::standard:
 			r = RoadBlock::left;
-			break,
+			break;
 		case RoadBlock::right:
 			r = RoadBlock::standard;
 			break;
@@ -155,6 +177,20 @@ RoadBlock::rotation operator--(RoadBlock::rotation &r, 0)
 	}
 	return ans;
 }
+
+
+
+
+RoadBlock::roadType operator++(RoadBlock::roadType &r, int)
+{
+	RoadBlock::roadType ans(r);
+	switch(r)
+	{
+		case RoadBlock::roadType:
+			r = RoadBlock::
+	}
+}
+
 
 
 

@@ -27,23 +27,31 @@ class RoadBlock : public sf::Drawable, public sf::Transformable
 	public:
 		enum roadType
 		{
-			straight, corner
+			straight = 0, 
+			corner = 1
 		};
 
 		enum rotation //clockwise
 		{
-			standard, right, left, down
+			standard = 0, 
+			right= 1, 
+			left = 2, 
+			down = 3
 		};
 
 	
 		RoadBlock();
 		RoadBlock(const sf::Texture &texture, roadType t, rotation r, const sf::Vector2f &pos);
 		RoadBlock(roadType t, rotation r, const sf::Vector2f &pos = sf::Vector2f(0.0, 0.0));
+
 		rotation getRotation();
+
 		roadType getRType();
+
 		sf::Vector2f getPosition();
 
 		void setRotation(rotation r);
+
 		void setType(roadType t);
 
 
@@ -59,9 +67,11 @@ class RoadBlock : public sf::Drawable, public sf::Transformable
 };
 
 
-RoadBlock::rotation operator++(RoadBlock::rotation &r, 0);
-RoadBlock::rotation operator--(RoadBlock::rotation &r, 0);
+RoadBlock::rotation operator++(RoadBlock::rotation &r, int);
+RoadBlock::rotation operator--(RoadBlock::rotation &r, int);
 
+
+RoadBlock::roadType operator++(RoadBlock::roadType &r, int);
 
 
 #endif

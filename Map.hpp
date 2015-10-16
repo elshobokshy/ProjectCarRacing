@@ -24,6 +24,7 @@ class Map : public sf::Drawable
 		Map(const std::string &fileName);
 
 		void loadFromFile(const std::string &fileName);
+		void saveToFile(const std::string &fileName);
 		void push_back(const RoadBlock &RdBk);
 
 

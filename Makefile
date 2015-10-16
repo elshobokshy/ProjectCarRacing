@@ -1,18 +1,25 @@
-CC=g++
-CFLAGS=-Wall 
-LDFLAGS=-Wall -L/usr/lib/x86_64-linux-gnu/ -lsfml-audio -lsfml-graphics -lsfml-window -lsfml-system
-EXEC=carRacing
+SYSCONF_LINK = g++
+CPPFLAGS     =
+CPPFLAGS     =
+LDFLAGS      = -Wall -L/usr/lib/x86_64-linux-gnu/ 
+LIBS         = -lsfml-audio -lsfml-graphics -lsfml-window -lsfml-system
 
-all: $(EXEC)
 
-carRacing: main.o Car.o collision.o game.o OpenFileError.o RoadBlock.o mapEdit.o
-	$(CC) -o $@ $^ $(LDFLAGS)
+DESTDIR = ./
+TARGET  = carRacing
 
-%.o: %.cpp
-	$(CC) -o $@ -c $< $(CFLAGS)
+OBJECTS := $(patsubst %.cpp,%.o,$(wildcard *.cpp))
+
+all: $(DESTDIR)$(TARGET)
+
+$(DESTDIR)$(TARGET): $(OBJECTS)
+	$(SYSCONF_LINK) -Wall $(LDFLAGS) -o $(DESTDIR)$(TARGET) $(OBJECTS) $(LIBS)
+
+$(OBJECTS): %.o: %.cpp
+	$(SYSCONF_LINK) -Wall $(CPPFLAGS) -c $(CFLAGS) $< -o $@
 
 clean:
-	rm -rf *.o
+	-rm -f $(OBJECTS)
+	-rm -f $(TARGET)
 
-mrproper: clean
-	rm -rf $(EXEC)
+
