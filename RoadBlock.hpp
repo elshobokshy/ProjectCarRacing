@@ -40,8 +40,8 @@ class RoadBlock : public sf::Drawable, public sf::Transformable
 		RoadBlock(const sf::Texture &texture, roadType t, rotation r, const sf::Vector2f &pos);
 		RoadBlock(roadType t, rotation r, const sf::Vector2f &pos = sf::Vector2f(0.0, 0.0));
 		rotation getRotation();
-		roadType getRType()
-		getPosition();
+		roadType getRType();
+		sf::Vector2f getPosition();
 
 		void setRotation(rotation r);
 		void setType(roadType t);
