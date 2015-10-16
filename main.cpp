@@ -13,6 +13,7 @@ int main(int argc, char **argv)
 	#ifdef __gnu_linux__
 	mapEdit::mapEdit(window);
 	//game(window);
+	#endif
 
 	return EXIT_SUCCESS;
 }
