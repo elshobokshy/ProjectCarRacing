@@ -58,5 +58,9 @@ class RoadBlock : public sf::Drawable, public sf::Transformable
 };
 
 
+RoadBlock::rotation operator++(RoadBlock::rotation &r, 0);
+RoadBlock::rotation operator--(RoadBlock::rotation &r, 0);
+
+
 
 #endif

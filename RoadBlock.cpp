@@ -90,3 +90,57 @@ void RoadBlock::draw(sf::RenderTarget &target, sf::RenderStates states) const
 
 	target.draw(m_sprite, states);
 }
+
+
+
+RoadBlock::rotation operator++(RoadBlock::rotation &r, 0)
+{
+	RoadBlock::rotation ans(r); //answer
+	switch(r)
+	{
+		case RoadBlock::standard:
+			r = RoadBlock::right;
+			break,
+		case RoadBlock::right:
+			r = RoadBlock::down;
+			break;
+		case RoadBlock::down:
+			r = RoadBlock::left;
+			break;
+		case RoadBlock::left:
+			r = RoadBlock::standard;
+			break;
+		default:
+			break;
+	}
+	return ans;
+}
+
+
+
+
+RoadBlock::rotation operator--(RoadBlock::rotation &r, 0)
+{
+	RoadBlock::rotation ans(r); //answer
+	switch(r)
+	{
+		case RoadBlock::standard:
+			r = RoadBlock::left;
+			break,
+		case RoadBlock::right:
+			r = RoadBlock::standard;
+			break;
+		case RoadBlock::down:
+			r = RoadBlock::right;
+			break;
+		case RoadBlock::left:
+			r = RoadBlock::down;
+			break;
+		default:
+			break;
+	}
+	return ans;
+}
+
+
+
