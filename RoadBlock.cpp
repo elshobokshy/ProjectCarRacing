@@ -9,15 +9,9 @@ const sf::Texture RoadBlock::straightTexture = createFromFile<sf::Texture>(STRAI
 const sf::Texture RoadBlock::cornerTexture = createFromFile<sf::Texture>(CORNER_TEXTURE_NAME);
 const sf::Texture RoadBlock::grassTexture = createFromFile<sf::Texture>(GRASS_TEXTURE_NAME);
 
-
-
-
-
-
 RoadBlock::RoadBlock()
 {
 }
-
 
 RoadBlock::RoadBlock(const sf::Texture &texture, roadType t, rotation r, const sf::Vector2f &pos)
 {
@@ -32,8 +26,6 @@ RoadBlock::RoadBlock(const sf::Texture &texture, roadType t, rotation r, const s
 	setRotation(r);
 }
 
-
-
 RoadBlock::RoadBlock(roadType t, rotation r, const sf::Vector2f &pos)
 {
 	setPosition(pos);
@@ -41,9 +33,6 @@ RoadBlock::RoadBlock(roadType t, rotation r, const sf::Vector2f &pos)
 	setRotation(r);
 	setType(t);
 }
-
-
-
 
 void RoadBlock::setRotation(rotation r)
 {
@@ -63,9 +52,6 @@ void RoadBlock::setRotation(rotation r)
 	}
 }
 
-
-
-
 void RoadBlock::setType(roadType t)
 {
 	m_type = t;
@@ -83,6 +69,34 @@ void RoadBlock::setType(roadType t)
 	}
 }
 
+RoadBlock::rotation RoadBlock::getRotation()
+{
+	float r = m_sprite.getRotation();
+	switch(r)
+	{
+		case 90:
+			return right;
+			break;
+		case -90:
+			return left;
+			break;
+		case 180:
+			return down;
+			break;
+		default:
+			break;
+	}
+}
+
+RoadBlock::roadType RoadBlock::getRType()
+{
+	return m_type;
+}
+
+sf::Vector2f Roadblock::getPosition()
+{
+	return m.sprite.getPosition();
+}
 
 void RoadBlock::draw(sf::RenderTarget &target, sf::RenderStates states) const
 {

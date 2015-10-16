@@ -41,6 +41,26 @@ void loadFromFile(const std::string &fileName)
             std::cerr << "Error 404 :: Impossible d'ouvrir le fichier !" << std::endl;
 }
 
+void saveToFile(const std::string &fileName)
+{
+	fstream fichier("file.txt", ios::out);
+
+        if(fichier)
+        {
+            for(std::list<RoadBlock>::iterator it=m_BlockList.begin();it != m_BlockList.end(); it++)
+			{
+                int rotation, rtype;
+                float x, y;
+				
+                fichier << it->getRotation() << it->getRType() << it->x << it->y;
+
+                RoadBlock saveFile(rtype, rotation, sf::Vector2f(x, y) );
+            }
+        }
+        else
+            std::cerr << "Error 404 :: Impossible de sauvegarder le fichier !" << std::endl;
+}
+
 
 void Map::draw(sf::RenderTarget &target, sf::RenderStates states) const
 {
@@ -50,3 +70,7 @@ void Map::draw(sf::RenderTarget &target, sf::RenderStates states) const
     }
 }
 
+void Map::push_back(const RoadBlock &RdBk)
+{
+	m_BlockList.push_back(RdBk);
+}
