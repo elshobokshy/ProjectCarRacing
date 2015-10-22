@@ -56,7 +56,7 @@ namespace mapEdit
 							action.rotation++;
 							break;
 						case sf::Mouse::Left:
-							action.rotation--;
+							action.rtype++;
 							break;
 						default:
 							break;
@@ -82,6 +82,10 @@ namespace mapEdit
 	
 		while(true)
 		{
+			RoadBlock block(action.rtype, action.rotation, sf::Vector2f(0, 0));
+
+
+
 			mapEdit::getEvents(window, action);
 			
 			sf::Vector2i cursorBlockPosition = sf::Mouse::getPosition(window); //get the position, relative to the window
@@ -92,8 +96,11 @@ namespace mapEdit
 			
 			if(action.placeUnplace)
 			{
-				editedMap.push_back(RoadBlock(action.rtype, action.rotation, sf::Vector2f(0, 0) /*TODO*/));
-				std::cout<< static_cast<int>(action.rtype)<< " ; "<< static_cast<int>(action.rotation)<< '\n';
+				//determine the size position of the block to be placed
+				sf::Vector2f posNewBlock((int(cursorBlockPosition.x) / 256) * 256, (int(cursorBlockPosition.y) / 256) * 256);
+
+				editedMap.push_back(RoadBlock(action.rtype, action.rotation, posNewBlock));
+				std::cout<< static_cast<int>(action.rtype)<< " ; "<< static_cast<int>(action.rotation)<< " ; " <<posNewBlock.x<< " / "<< posNewBlock.y<< '\n';
 			}
 
 			
@@ -101,14 +108,12 @@ namespace mapEdit
 		
 			window.clear(sf::Color::Black);
 			//game display
+			window.draw(editedMap);
 			window.draw(cursorBlock);
 
 			window.display();
 		}
-	
 	}
-
-
 }
 
 
