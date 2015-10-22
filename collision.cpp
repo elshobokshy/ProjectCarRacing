@@ -34,14 +34,18 @@ namespace collision
 	
 	bool collision(const RectHitBox &rectBox1, const RectHitBox &rectBox2)
 	{
-   int dis2centre = (rectBox1.left-rectBox2.left)*(rectBox1.left-rectBox2.left) + (rectBox1.top-rectBox2.top)*(rectBox1.top-rectBox2.top); //Distance entre deux centre
-   int centre1_x = rectBox1.left + rectBox1.width/ 2;
-   int centre1_y = rectBox1.top + rectBox1.height/ 2;
-   int centre2_x = rectBox2.left + rectBox2.width/ 2;
-   int centre2_y = rectBox2.top + rectBox2.height/ 2;
-   int rayon1 = ((rectBox1.height * rectBox1.height) + (rectBox1.width * rectBox1.width))/2;
-   int rayon2 = ((rectBox2.height * rectBox2.height) + (rectBox2.width * rectBox2.width))/2;
-   return (dis2centre < (rayon1 + rayon2)*(rayon1 + rayon2))
+		sf::FloatRect rect1 = rectBox1.rect, rect2 = rectBox2.rect;
+		
+		/*int centre1_x = rect1.left + rect1.width/ 2;
+		int centre1_y = rect1.top + rect1.height/ 2;
+		int centre2_x = rect2.left + rect2.width/ 2;
+		int centre2_y = rect2.top + rect2.height/ 2;*/
+		
+		int dis2centre = (rect1.left-rect2.left)*(rect1.left-rect2.left) + (rect1.top-rect2.top)*(rect1.top-rect2.top); //Distance entre deux centre
+		
+		int rayon1 = ((rect1.height * rect1.height) + (rect1.width * rect1.width))/2;
+		int rayon2 = ((rect2.height * rect2.height) + (rect2.width * rect2.width))/2;
+		return (dis2centre < (rayon1 + rayon2)*(rayon1 + rayon2));
 	}
 
 
