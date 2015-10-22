@@ -16,11 +16,11 @@ namespace collision
 	{
 		public:
 			RectHitBox();
-			RectHitBox(const sf::FloatRect &rect, float orientation);
+			RectHitBox(const sf::FloatRect &rect1, float orient1);
 
 		
-			sf::FloatRect m_rect;
-			float m_orientation;
+			sf::FloatRect rect;
+			float orientation;
 
 	};
 
@@ -30,43 +30,17 @@ namespace collision
 	{
 		public:
 			LineHitBox();
-			LineHitBox(const sf::Vector2f &p1, const sf::Vector2f &p2);
+			LineHitBox(const sf::Vector2f &point1, const sf::Vector2f &point2);
 
 		
-			sf::Vector2f m_p1;
-			sf::Vector2f m_p2;
+			sf::Vector2f p1;
+			sf::Vector2f p2;
 	};
 
 
 	//TODO
 	bool collision(const RectHitBox &rectBox1, const RectHitBox &rectBox2);
 	bool collision(const RectHitBox &rectBox, const LineHitBox &lineBox);
-
-
-/*
-class HitBox
-{
-	enum type
-	{
-		rect, line
-	}
-
-	
-	union borderInfo
-	{
-		//Rectangle
-		sf::FloatRect 
-
-	}
-
-	public:
-		HitBox();
-		HitBox(type t);
-
-	private:
-		type m_type;
-
-};*/
 
 }
 

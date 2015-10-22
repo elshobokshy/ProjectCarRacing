@@ -28,6 +28,7 @@ class Car : public sf::Drawable, sf::Transformable
 		unsigned int m_speed;
 		unsigned int m_acceleration;
 		sf::Sprite m_sprite;
+		sf::Vector2f apply_physics(int v);
 		//HitBox m_hitBox;i
 
 		//Constants
