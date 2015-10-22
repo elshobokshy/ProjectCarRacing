@@ -10,6 +10,8 @@ const sf::Texture RoadBlock::cornerTexture = createFromFile<sf::Texture>(CORNER_
 const sf::Texture RoadBlock::grassTexture = createFromFile<sf::Texture>(GRASS_TEXTURE_NAME);
 
 
+const sf::Vector2i RoadBlock::texSize = sf::Vector2i(256, 256);
+
 
 RoadBlock::RoadBlock()
 {
@@ -24,10 +26,11 @@ RoadBlock::RoadBlock(const sf::Texture &texture, roadType t, rotation r, const s
 	m_sprite.setTexture(texture);
 	setType(t);
 	
-	sf::Vector2u texSize(texture.getSize());
 	m_sprite.setOrigin(float(texSize.x)/2.f, float(texSize.y)/2.f);
 	
 	setRotation(r);
+
+	m_sprite.setOrigin(0, 0);
 }
 
 
@@ -43,9 +46,11 @@ RoadBlock::RoadBlock(roadType t, rotation r, const sf::Vector2f &pos)
 
 void RoadBlock::setRotation(rotation r)
 {
+	m_sprite.setOrigin(float(texSize.x)/2.f, float(texSize.y)/2.f);
+
 	switch(r)
 	{
-		case right:
+		case right: //TODO FIX
 			m_sprite.setRotation(90);
 			break;
 		case left:
@@ -56,7 +61,9 @@ void RoadBlock::setRotation(rotation r)
 			break;
 		default:
 			break;
-	}
+	}	//m_sprite.rotate(10);
+
+	m_sprite.setOrigin(0, 0);
 }
 
 
@@ -186,9 +193,16 @@ RoadBlock::roadType operator++(RoadBlock::roadType &r, int)
 	RoadBlock::roadType ans(r);
 	switch(r)
 	{
-		case RoadBlock::roadType:
-			r = RoadBlock::
+		case RoadBlock::straight:
+			r = RoadBlock::corner;
+			break;
+		case RoadBlock::corner:
+			r = RoadBlock::straight;
+			break;
+		default:
+			break;
 	}
+	return ans;
 }
 
 
