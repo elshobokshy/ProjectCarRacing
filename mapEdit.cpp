@@ -33,13 +33,13 @@ namespace mapEdit
 			switch(event.type)
 			{
 				case sf::Event::Closed:
-					exit(EXIT_SUCCESS);
+					window.close();
 					break;
 				case sf::Event::KeyPressed:
 					switch(event.key.code)
 					{
 						case sf::Keyboard::Escape:
-							exit(EXIT_SUCCESS);
+							window.close();
 							break;
 						case sf::Keyboard::Space:
 							action.placeUnplace = true;
@@ -80,7 +80,7 @@ namespace mapEdit
 		Action action;	
 
 	
-		while(true)
+		while(window.isOpen())
 		{
 			RoadBlock block(action.rtype, action.rotation, sf::Vector2f(0, 0));
 
@@ -90,6 +90,8 @@ namespace mapEdit
 			
 			sf::Vector2i cursorBlockPosition = sf::Mouse::getPosition(window); //get the position, relative to the window
 			cursorBlock.setPosition( float(cursorBlockPosition.x), float(cursorBlockPosition.y) );
+			cursorBlock.setRotation(action.rotation);
+			cursorBlock.setType(action.rtype);
 
 
 
@@ -113,6 +115,9 @@ namespace mapEdit
 
 			window.display();
 		}
+
+		//finally : save to file !
+		editedMap.saveToFile("saveMap.pwet");
 	}
 }
 

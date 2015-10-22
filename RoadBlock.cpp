@@ -15,6 +15,7 @@ const sf::Vector2i RoadBlock::texSize = sf::Vector2i(256, 256);
 
 RoadBlock::RoadBlock()
 {
+	m_sprite.setOrigin(float(texSize.x)/2.f, float(texSize.y)/2.f);
 }
 
 
@@ -38,6 +39,8 @@ RoadBlock::RoadBlock(const sf::Texture &texture, roadType t, rotation r, const s
 
 RoadBlock::RoadBlock(roadType t, rotation r, const sf::Vector2f &pos)
 {
+	m_sprite.setOrigin(float(texSize.x)/2.f, float(texSize.y)/2.f);
+
 	setPosition(pos);
 
 	setRotation(r);
@@ -46,7 +49,7 @@ RoadBlock::RoadBlock(roadType t, rotation r, const sf::Vector2f &pos)
 
 void RoadBlock::setRotation(rotation r)
 {
-	m_sprite.setOrigin(float(texSize.x)/2.f, float(texSize.y)/2.f);
+	
 
 	switch(r)
 	{
@@ -59,11 +62,13 @@ void RoadBlock::setRotation(rotation r)
 		case down:
 			m_sprite.setRotation(180);
 			break;
+		case standard:
+			m_sprite.setRotation(0);
+			break;
 		default:
 			break;
-	}	//m_sprite.rotate(10);
-
-	m_sprite.setOrigin(0, 0);
+	}
+	//m_sprite.rotate(10);
 }
 
 
@@ -128,6 +133,7 @@ sf::Vector2f RoadBlock::getPosition()
 void RoadBlock::draw(sf::RenderTarget &target, sf::RenderStates states) const
 {
 	states.transform *= getTransform();
+	states.transform.translate(float(texSize.x)/2.f, float(texSize.y)/2.f);
 
 	target.draw(m_sprite, states);
 }

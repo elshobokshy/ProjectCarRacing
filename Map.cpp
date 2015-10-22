@@ -19,7 +19,7 @@ Map::Map(const std::string &fileName)
 
 void Map::loadFromFile(const std::string &fileName)
 {
-	std::ifstream fichier("file.txt", std::ios::in);
+	std::ifstream fichier(fileName.c_str(), std::ios::in);
 
         if(fichier)
         {
@@ -47,7 +47,7 @@ void Map::loadFromFile(const std::string &fileName)
 
 void Map::saveToFile(const std::string &fileName)
 {
-	std::ofstream fichier("file.txt", std::ios::out);
+	std::ofstream fichier(fileName.c_str(), std::ios::out);
 
         if(fichier)
         {
@@ -59,7 +59,7 @@ void Map::saveToFile(const std::string &fileName)
 		x = pos.x;
 		y = pos.y;
 				
-                fichier << static_cast<RoadBlock::rotation>(it->getRotation()) << static_cast<RoadBlock::roadType>(it->getRType()) << x << y;
+                fichier << static_cast<RoadBlock::rotation>(it->getRotation()) <<' '<< static_cast<RoadBlock::roadType>(it->getRType()) << ' '<< x << ' '<< y << '\n';
             }
         }
         else
