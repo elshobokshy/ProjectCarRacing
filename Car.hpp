@@ -8,6 +8,8 @@
 #include <SFML/Graphics/Transformable.hpp>
 #include <SFML/Graphics/Sprite.hpp>
 
+#include "Timer.hpp"
+
 
 namespace sf
 {
@@ -38,7 +40,7 @@ class Car : public sf::Drawable, public sf::Transformable
 		int m_acceleration;
 		sf::Sprite m_sprite;
 
-		//HitBox m_hitBox;
+		Timer m_timer;
 
 		sf::Vector2f m_speedVector;
 
