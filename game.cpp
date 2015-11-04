@@ -2,99 +2,150 @@
 
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Window/Event.hpp>
+#include <SFML/Window/Keyboard.hpp>
 #include <SFML/Graphics/Texture.hpp>
 
 #include <iostream>
 
 #include "OpenFileError.hpp"
 
-
-void getEvents(sf::RenderWindow &window)
+namespace game
 {
-	sf::Event event;
-	while(window.pollEvent(event))
+	Action::Action(float orien, int accel): 
+		orientation(orien), acceleration(accel)
 	{
-		switch(event.type)
+	}
+
+
+	void getEvents(sf::RenderWindow &window, Action &action)
+	{
+		action.acceleration = 0;
+		action.orientation = 0;
+		sf::Event event;
+		while(window.pollEvent(event))
 		{
-			case sf::Event::Closed:
-				exit(EXIT_SUCCESS);
-				break;
-			case sf::Event::KeyPressed:
-				switch(event.key.code)
-				{
-					case sf::Keyboard::Escape:
-						exit(EXIT_SUCCESS);
-						break;
-					default:
-						break;
-				}
-				break;
-			case sf::Event::KeyReleased:
-				break;
-			default:
-				break;
+			switch(event.type)
+			{
+				case sf::Event::Closed:
+					exit(EXIT_SUCCESS);
+					break;
+				case sf::Event::KeyPressed:
+					switch(event.key.code)
+					{
+						case sf::Keyboard::Escape:
+							exit(EXIT_SUCCESS);
+							break;
+						/*case sf::Keyboard::Up:
+							action.acceleration = 1;
+							break;
+						case sf::Keyboard::Down:
+							action.acceleration = -1;
+							break;
+						case sf::Keyboard::Right:
+							action.orientation = 1;
+							break;
+						case sf::Keyboard::Left:
+							action.orientation = -1;
+							break;*/
+						default:
+							break;
+					}
+					break;
+				case sf::Event::KeyReleased:
+					break;
+				default:
+					break;
+			}
+		}
+
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+		{
+			action.acceleration = -1;
+		}
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+		{
+			action.acceleration = 1;
+		}
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+		{
+			action.orientation = 1;
+		}
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+		{
+			action.orientation = -1;
+		}
+
+	}
+
+
+	void game(sf::RenderWindow &window)
+	{
+		//image loading
+		//std::vector<sf::Texture> texTab;
+		sf::Texture texPlayerCar;
+		if(!texPlayerCar.loadFromFile(CAR_FILE))
+		{
+			throw OpenFileError();
+		}
+
+		Car playerCar(texPlayerCar);
+
+		//std::vector<Car> carsTab;
+
+		//loadCars(carsTab, texTab);
+
+
+		//sound loading
+
+		//music loading
+
+
+
+		//other variables
+		Action action;
+
+		//main loop
+		while(true)
+		{
+			getEvents(window, action);
+
+			//game physic/////////////////////////////
+			playerCar.accelerate(action.acceleration);	
+			playerCar.rotate(action.orientation);
+
+			playerCar.apply_physics();
+
+			// \game physics /////////////////////////
+
+			window.clear(sf::Color::Black);
+			//game display
+			window.draw(playerCar);
+
+			window.display();
+		}
+
+	}
+
+
+	void loadCars(std::vector<Car> &carsTab, std::vector<sf::Texture> &texTab)
+	{
+		try
+		{
+			sf::Texture texCar;
+			if(!texCar.loadFromFile(CAR_FILE))
+			{
+				OpenFileError error;
+				throw error;
+			}
+
+			texTab.push_back(texCar);
+			carsTab.push_back(Car(texTab[0], CAR_SPEED, CAR_ACCELERATION));
+		}
+		catch(std::exception &except)
+		{
+			std::cerr<< except.what()<< "\n";
 		}
 	}
 
-}
 
-
-void game(sf::RenderWindow &window)
-{
-	//image loading
-	std::vector<sf::Texture> texTab;
-	std::vector<Car> carsTab;
-
-	loadCars(carsTab, texTab);
-
-
-	//sound loading
-	
-	//music loading
-
-	
-
-	//other variables
-
-	//main loop
-	while(true)
-	{
-		getEvents(window);
-
-		//game physic/////////////////////////////
-		
-		//moving cars
-		//
-
-		// \game physics /////////////////////////
-
-		
-		window.clear(sf::Color::Black);
-		//game display
-		window.draw(carsTab[0]);
-
-		window.display();
-	}
-
-}
-
-
-void loadCars(std::vector<Car> &carsTab, std::vector<sf::Texture> &texTab)
-{
-	try
-	{
-		sf::Texture texCar;
-		if(!texCar.loadFromFile(CAR_FILE))
-		{
-			OpenFileError error;
-			throw error;
-		}
-
-		texTab.push_back(texCar);
-		carsTab.push_back(Car(texTab[0], CAR_SPEED, CAR_ACCELERATION));
-	}
-	catch(std::exception &except)
-	{
-		std::cerr<< except.what()<< "\n";
-	}
 }

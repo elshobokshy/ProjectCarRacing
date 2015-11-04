@@ -1,6 +1,6 @@
 SYSCONF_LINK = g++
 CPPFLAGS     =
-CPPFLAGS     =
+CPPFLAGS     = -g
 LDFLAGS      = -Wall -L/usr/lib/x86_64-linux-gnu/ 
 LIBS         = -lsfml-audio -lsfml-graphics -lsfml-window -lsfml-system
 

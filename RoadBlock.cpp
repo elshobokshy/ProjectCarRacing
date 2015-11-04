@@ -3,6 +3,7 @@
 #include <SFML/Graphics/RenderTarget.hpp>
 #include "FileLoader.hpp"
 
+#include <iostream>
 
 
 const sf::Texture RoadBlock::straightTexture = createFromFile<sf::Texture>(STRAIGHT_TEXTURE_NAME);
@@ -17,6 +18,20 @@ RoadBlock::RoadBlock()
 {
 	m_sprite.setOrigin(float(texSize.x)/2.f, float(texSize.y)/2.f);
 }
+
+
+
+
+/*RoadBlock::RoadBlock(const RoadBlock &other): 
+	sf::Drawable(other), sf::Transformable(other)
+{
+	setPosition(other.sf::Transformable::getPosition());
+	setRotation(other.sf::Transformable::getRotation());
+}*/
+
+
+
+
 
 
 
@@ -42,6 +57,8 @@ RoadBlock::RoadBlock(roadType t, rotation r, const sf::Vector2f &pos)
 	m_sprite.setOrigin(float(texSize.x)/2.f, float(texSize.y)/2.f);
 
 	setPosition(pos);
+
+	//std::cout<< pos.x<< " ; "<< pos.y<< '\n';
 
 	setRotation(r);
 	setType(t);
@@ -122,10 +139,10 @@ RoadBlock::roadType RoadBlock::getRType()
 
 
 
-sf::Vector2f RoadBlock::getPosition()
+/*sf::Vector2f RoadBlock::getPosition()
 {
 	return m_sprite.getPosition();
-}
+}*/
 
 
 

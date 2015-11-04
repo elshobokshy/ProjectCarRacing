@@ -7,12 +7,12 @@ int main(int argc, char **argv)
 	sf::RenderWindow window(sf::VideoMode(800, 600), "Car Racing");
 
 	#ifdef _WIN32
-	game(window);
+	game::game(window);
 	#endif
 	
 	#ifdef __gnu_linux__
-	mapEdit::mapEdit(window);
-	//game(window);
+	//mapEdit::mapEdit(window);
+	game::game(window);
 	#endif
 
 	return EXIT_SUCCESS;

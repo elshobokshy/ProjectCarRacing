@@ -13,6 +13,7 @@ const std::string CAR_FILE("gameData/images/carOrange.png");
 
 //const unsigned int KEY_EVENT_NUMBER = sf::Keyboard::KeyCount;
 
+
 namespace sf
 {
 	class RenderWindow;
@@ -20,11 +21,22 @@ namespace sf
 
 class Car;
 
-void loadCars(std::vector<Car> &carsTab, std::vector<sf::Texture> &texTab);
 
-void game(sf::RenderWindow &window);
+namespace game
+{
+	struct Action
+	{
+		Action(float orien = 0, int accel = 0);
 
-void getEvents(sf::RenderWindow &window);
+		float orientation;
+		int acceleration;
+	};
 
+	void loadCars(std::vector<Car> &carsTab, std::vector<sf::Texture> &texTab);
+
+	void game(sf::RenderWindow &window);
+
+	void getEvents(sf::RenderWindow &window, Action &action);
+}
 
 #endif

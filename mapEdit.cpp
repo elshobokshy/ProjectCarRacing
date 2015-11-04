@@ -82,7 +82,7 @@ namespace mapEdit
 	
 		while(window.isOpen())
 		{
-			RoadBlock block(action.rtype, action.rotation, sf::Vector2f(0, 0));
+			//RoadBlock block(action.rtype, action.rotation, sf::Vector2f(0, 0));
 
 
 
@@ -102,7 +102,7 @@ namespace mapEdit
 				sf::Vector2f posNewBlock((int(cursorBlockPosition.x) / 256) * 256, (int(cursorBlockPosition.y) / 256) * 256);
 
 				editedMap.push_back(RoadBlock(action.rtype, action.rotation, posNewBlock));
-				std::cout<< static_cast<int>(action.rtype)<< " ; "<< static_cast<int>(action.rotation)<< " ; " <<posNewBlock.x<< " / "<< posNewBlock.y<< '\n';
+				//std::cout<< static_cast<int>(action.rtype)<< " ; "<< static_cast<int>(action.rotation)<< " ; " <<posNewBlock.x<< " / "<< posNewBlock.y<< '\n';
 			}
 
 			

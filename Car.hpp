@@ -15,21 +15,32 @@ namespace sf
 }
 
 
-class Car : public sf::Drawable, sf::Transformable
+
+const unsigned int DEFAULT_CAR_ACCELERATION = 1;
+
+
+
+class Car : public sf::Drawable, public sf::Transformable
 {
 	public:
-		Car(sf::Texture &tex, unsigned int speed, unsigned int acceleration);
+		Car(sf::Texture &tex, unsigned int speed = 0, int acceleration = 0);
 
+
+		void accelerate(int accel);
+
+		void apply_physics();
 
 	protected:
 		virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
 	private:
 		unsigned int m_speed;
-		unsigned int m_acceleration;
+		int m_acceleration;
 		sf::Sprite m_sprite;
-		sf::Vector2f apply_physics(int v);
-		//HitBox m_hitBox;i
+
+		//HitBox m_hitBox;
+
+		sf::Vector2f m_speedVector;
 
 		//Constants
 		sf::Vector2f dimension;

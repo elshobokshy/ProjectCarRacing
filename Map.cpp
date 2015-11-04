@@ -6,15 +6,21 @@
 #include <iostream>
 #include <fstream>
 
+
+
+
 Map::Map()
 {
 }
+
 
 
 Map::Map(const std::string &fileName)
 {
     loadFromFile(fileName);
 }
+
+
 
 
 void Map::loadFromFile(const std::string &fileName)
@@ -45,6 +51,8 @@ void Map::loadFromFile(const std::string &fileName)
             std::cerr << "Error 404 :: Impossible d'ouvrir le fichier !" << std::endl;
 }
 
+
+
 void Map::saveToFile(const std::string &fileName)
 {
 	std::ofstream fichier(fileName.c_str(), std::ios::out);
@@ -56,8 +64,11 @@ void Map::saveToFile(const std::string &fileName)
                 float x, y;
 
 		sf::Vector2f pos(it->getPosition());
+
 		x = pos.x;
 		y = pos.y;
+
+		std::cout<< x<< " ; "<< y<< '\n';
 				
                 fichier << static_cast<RoadBlock::rotation>(it->getRotation()) <<' '<< static_cast<RoadBlock::roadType>(it->getRType()) << ' '<< x << ' '<< y << '\n';
             }
@@ -82,5 +93,20 @@ void Map::draw(sf::RenderTarget &target, sf::RenderStates states) const
 
 void Map::push_back(const RoadBlock &RdBk)
 {
-	m_BlockList.push_back(RdBk);
+	bool found = false;
+	sf::Vector2f pos(RdBk.getPosition());
+
+	for(std::list<RoadBlock>::iterator it = m_BlockList.begin(); it != m_BlockList.end() && !found; it++)
+	{
+		found = it->getPosition() == pos; //Replace an eventual element that is at the same place in the map
+		if(found)
+		{
+			*it = RdBk;
+		}
+	}
+	
+	if(!found)
+	{
+		m_BlockList.push_back(RdBk);
+	}
 }
