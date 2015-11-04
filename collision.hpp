@@ -37,11 +37,22 @@ namespace collision
 			sf::Vector2f p2;
 	};
 
+	class CercleHitBox
+	{
+		public:
+			CercleHitBox();
+			CercleHitBox(const sf::Vector2f &point, float &rayon);
+			
+			sf::Vector2f p;
+			float rayon;
+			
+	};
 
 	//TODO
 	bool collision(const RectHitBox &rectBox1, const RectHitBox &rectBox2);
 	bool collision(const RectHitBox &rectBox, const LineHitBox &lineBox);
-
+	bool collision(const CercleHitBox &cercleBox, const LineHitBox &lineBox);
+	bool collision(const sf::Vector2f &point, const CercleHitBox &cercleBox);
 }
 
 #endif

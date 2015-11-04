@@ -47,6 +47,42 @@ namespace collision
 		int rayon2 = ((rect2.height * rect2.height) + (rect2.width * rect2.width))/2;
 		return (dis2centre < (rayon1 + rayon2)*(rayon1 + rayon2));
 	}
+	
+	bool collision(const sf::Vector2f &point, const CercleHitBox &cercleBox)
+	{
+		sf::Vector2f C(cercleBox.p);
+		float x = point.x, y = point.y;
+		float rayon = cercleBox.rayon;
+		
+		float d2 = (x-C.x)*(x-C.x) + (y-C.y)*(y-C.y);
+		if (d2>rayon*rayon)
+			return false;
+		else
+			return true;
+	}
+	
+	bool collision(const CercleHitBox &cercleBox, const LineHitBox &lineBox)
+	{
+		sf::Vector2f A(lineBox.p1), B(lineBox.p2), C(cercleBox.p);
+		
+		sf::Vector2f AB,AC,BC;
+		AB.x = B.x - A.x;
+	    AB.y = B.y - A.y;
+	    AC.x = C.x - A.x;
+	    AC.y = C.y - A.y;
+	    BC.x = C.x - B.x;
+	    BC.y = C.y - B.y;
+	    float pscal1 = AB.x*AC.x + AB.y*AC.y;  // produit scalaire
+	    float pscal2 = (-AB.x)*BC.x + (-AB.y)*BC.y;  // produit scalaire
+	    if (pscal1>=0 && pscal2>=0)
+			return true;   // I entre A et B, ok.
+	    // dernière possibilité, A ou B dans le cercle
+	    if (collision(A,cercleBox))
+		  return true;
+	    if (collision(B,cercleBox))
+		  return true;
+	    return false;
+	}
 
 
 }
