@@ -1,5 +1,6 @@
 #include "Timer.hpp"
 
+#include <iostream>
 
 
 sf::Clock Timer::programClock;
@@ -30,7 +31,7 @@ bool Timer::ticked()
 	sf::Time currentTime(programClock.getElapsedTime());
 	if(currentTime - m_startingTimeShift >= m_duration)
 	{
-		restart();
+		//std::cout<< "tic\n";
 		return true;
 	}
 	return false;
