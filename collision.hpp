@@ -53,6 +53,7 @@ namespace collision
 	bool collision(const RectHitBox &rectBox, const LineHitBox &lineBox);
 	bool collision(const CercleHitBox &cercleBox, const LineHitBox &lineBox);
 	bool collision(const sf::Vector2f &point, const CercleHitBox &cercleBox);
+	bool collision(const CercleHitBox &cercleBox1, const CercleHitBox &cercleBox2);
 }
 
 #endif

@@ -32,6 +32,18 @@ namespace collision
 		p2 = point2;
 	}
 	
+	CercleHitBox::CercleHitBox()
+	{
+		p = sf::Vector2f(0,0);
+		rayon = 1;
+	}
+	
+	CercleHitBox::CercleHitBox(const sf::Vector2f &point, float &rayon)
+	{
+		p = point;
+		rayon = rayon;
+	}
+	
 	bool collision(const RectHitBox &rectBox1, const RectHitBox &rectBox2)
 	{
 		sf::FloatRect rect1 = rectBox1.rect, rect2 = rectBox2.rect;
@@ -82,6 +94,16 @@ namespace collision
 	    if (collision(B,cercleBox))
 		  return true;
 	    return false;
+	}
+	
+	bool collision(const CercleHitBox &cercleBox1, const CercleHitBox &cercleBox2)
+	{
+		sf::Vector2f C1(cercleBox1.p), C2(cercleBox2.p);
+		float d2 = (C1.x-C2.x)*(C1.x-C2.x) + (C1.y-C2.y)*(C1.y-C2.y);
+		if (d2 > (cercleBox1.rayon + cercleBox2.rayon)*(cercleBox1.rayon + cercleBox2.rayon))
+			return false;
+		else
+			return true;
 	}
 
 
