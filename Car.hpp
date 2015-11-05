@@ -25,7 +25,7 @@ const unsigned int DEFAULT_CAR_ACCELERATION = 1;
 class Car : public sf::Drawable, public sf::Transformable
 {
 	public:
-		Car(sf::Texture &tex, unsigned int speed = 0, int acceleration = 0);
+		Car(sf::Texture &tex, unsigned int speed = 0);
 
 
 		void accelerate(int accel);
@@ -36,11 +36,11 @@ class Car : public sf::Drawable, public sf::Transformable
 		virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
 	private:
-		unsigned int m_speed;
-		int m_acceleration;
+		float m_acceleration;
 		sf::Sprite m_sprite;
 
-		Timer m_timer;
+		Timer m_physicTimer; //timer that permit the physics to apply at every frame
+		//Timer m_
 
 		sf::Vector2f m_speedVector;
 
