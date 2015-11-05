@@ -139,7 +139,7 @@ namespace game
 			}
 
 			texTab.push_back(texCar);
-			carsTab.push_back(Car(texTab[0], CAR_SPEED, CAR_ACCELERATION));
+			carsTab.push_back(Car(texTab[0], CAR_SPEED));
 		}
 		catch(std::exception &except)
 		{
