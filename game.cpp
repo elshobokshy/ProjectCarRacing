@@ -60,19 +60,19 @@ namespace game
 
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
 		{
-			action.acceleration = -1;
+			action.acceleration = -5;
 		}
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 		{
-			action.acceleration = 1;
+			action.acceleration = 5;
 		}
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 		{
-			action.orientation = 1;
+			action.orientation = 5;
 		}
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 		{
-			action.orientation = -1;
+			action.orientation = -5;
 		}
 
 	}
@@ -88,7 +88,7 @@ namespace game
 			throw OpenFileError();
 		}
 
-		Car playerCar(texPlayerCar);
+		Car playerCar(texPlayerCar, 50);
 
 		//std::vector<Car> carsTab;
 
