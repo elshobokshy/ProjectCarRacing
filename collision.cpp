@@ -38,10 +38,10 @@ namespace collision
 		rayon = 1;
 	}
 	
-	CercleHitBox::CercleHitBox(const sf::Vector2f &point, float &rayon)
+	CercleHitBox::CercleHitBox(const sf::Vector2f &point, float rayon1)
 	{
 		p = point;
-		rayon = rayon;
+		rayon = rayon1;
 	}
 	
 	bool collision(const RectHitBox &rectBox1, const RectHitBox &rectBox2)

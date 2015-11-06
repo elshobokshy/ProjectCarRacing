@@ -41,7 +41,7 @@ namespace collision
 	{
 		public:
 			CercleHitBox();
-			CercleHitBox(const sf::Vector2f &point, float &rayon);
+			CercleHitBox(const sf::Vector2f &point, float rayon1);
 			
 			sf::Vector2f p;
 			float rayon;
