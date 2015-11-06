@@ -7,6 +7,8 @@
 
 #include <iostream>
 
+#include "Map.hpp"
+
 #include "OpenFileError.hpp"
 
 namespace game
@@ -87,6 +89,8 @@ namespace game
 		{
 			throw OpenFileError();
 		}
+		
+		Map map(std::string("saveMap.pwet"));
 
 		Car playerCar(texPlayerCar, 50);
 
@@ -119,6 +123,7 @@ namespace game
 
 			window.clear(sf::Color::Black);
 			//game display
+			window.draw(map);
 			window.draw(playerCar);
 
 			window.display();
