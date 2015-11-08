@@ -66,6 +66,8 @@ void Car::apply_physics()
 
 		float accelFactor = m_physicTimer.getFullWaitedDuration().asSeconds();
 
+		//std::cout<< accelFactor * 60<< "\n";
+
 		//calculate the new speed with the acceleration
 		m_speedVector.x += std::cos(rotation*M_PI/180)*m_acceleration*accelFactor;
 		m_speedVector.y += std::sin(rotation*M_PI/180)*m_acceleration*accelFactor;

@@ -18,23 +18,24 @@ class Timer
 
 		
 		bool ticked(); //exceeded the specified duration
-		sf::Time getFullWaitedDuration();
-		sf::Time getExceededDuration();
+		sf::Time getFullWaitedDuration() const;
+		sf::Time getExceededDuration() const;
 
 		void restart();
 
 
-		//global clock the will be followed by all of the timers
+		//global clock that will be followed by all of the timers
 		static sf::Clock programClock;
+
+		static sf::Time globalTime();
 
 
 	private:
 		sf::Time m_duration;
 
 		sf::Time m_startingTimeShift; //shift from the programClock
-
-
-		sf::Time m_oldTime; //the old starting time
+		
+		sf::Time m_oldTime; //Last time the clock ticked
 };
 
 
