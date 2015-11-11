@@ -74,7 +74,7 @@ void Car::apply_physics()
 		move(m_speedVector);
 
 
-		m_acceleration = 0;
+		m_acceleration = 6;
 		m_physicTimer.restart();
 
 		//std::cout<< getPosition().x<< " ; "<< getPosition().y<< '\n';
