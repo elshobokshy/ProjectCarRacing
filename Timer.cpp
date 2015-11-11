@@ -28,7 +28,7 @@ void Timer::setDuration(const sf::Time &duration)
 
 bool Timer::ticked()
 {
-	sf::Time currentTime(programClock.getElapsedTime());
+	sf::Time currentTime(globalTime());
 	if(currentTime - m_startingTimeShift >= m_duration)
 	{
 		//std::cout<< "tic\n";
@@ -38,25 +38,35 @@ bool Timer::ticked()
 }
 
 
-sf::Time Timer::getFullWaitedDuration()
+sf::Time Timer::getFullWaitedDuration() const
 {
-	return programClock.getElapsedTime() - m_oldTime;
+	return globalTime() - m_oldTime;
 }
 
 
 
-sf::Time Timer::getExceededDuration()
+sf::Time Timer::getExceededDuration() const
 {
-	return programClock.getElapsedTime() - m_oldTime - m_duration;
+	return globalTime() - m_oldTime - m_duration;
 }
 
 
 
 void Timer::restart()
 {
-	m_oldTime = m_startingTimeShift;
-	m_startingTimeShift = programClock.getElapsedTime();
+	sf::Time currentTime(globalTime());
+	m_oldTime = currentTime - getExceededDuration();
+	m_startingTimeShift = m_oldTime;
 }
+
+
+
+
+sf::Time Timer::globalTime()
+{
+	return programClock.getElapsedTime();
+}
+
 
 
 
