@@ -17,9 +17,18 @@ namespace sf
 	class RenderTarget;
 }
 
+
+namespace hidden
+{
+	class MapIterator;
+}
+
+
 class Map : public sf::Drawable
 {
 	public:
+		typedef std::list<RoadBlock>::iterator iterator;
+
 		Map();
 		Map(const std::string &fileName);
 
@@ -28,6 +37,9 @@ class Map : public sf::Drawable
 		void push_back(const RoadBlock &RdBk);
 
 
+		Map::iterator begin();
+		Map::iterator end();
+
 
 
 		virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const;
@@ -35,6 +47,30 @@ class Map : public sf::Drawable
 		std::list<RoadBlock> m_BlockList;
 
 };
+
+
+
+/*
+namespace hidden
+{
+	class MapIterator
+	{
+		public:
+			MapIterator();
+
+			MapIterator operator++(int);
+			MapIterator operator--(int);
+
+			bool atEnd() const;
+
+		private:
+			std::list<RoadBlock>::iterator m_listIterator;
+	};
+}
+*/
+
+
+
 
 
 #endif

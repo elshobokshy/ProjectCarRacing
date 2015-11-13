@@ -6,6 +6,7 @@
 #include <string>
 
 #include "Car.hpp"
+#include "Map.hpp"
 
 const unsigned int CAR_SPEED = 10;
 const unsigned int CAR_ACCELERATION = 1;
@@ -20,6 +21,7 @@ namespace sf
 }
 
 class Car;
+
 
 
 namespace game
@@ -37,6 +39,8 @@ namespace game
 	void game(sf::RenderWindow &window);
 
 	void getEvents(sf::RenderWindow &window, Action &action);
+
+	void keepCarOnRoad(Car &car, Map &map, Map::iterator& it);
 }
 
 #endif

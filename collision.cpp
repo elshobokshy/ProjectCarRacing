@@ -32,13 +32,13 @@ namespace collision
 		p2 = point2;
 	}
 	
-	CercleHitBox::CercleHitBox()
+	CircleHitBox::CircleHitBox()
 	{
 		p = sf::Vector2f(0,0);
 		rayon = 1;
 	}
 	
-	CercleHitBox::CercleHitBox(const sf::Vector2f &point, float rayon1)
+	CircleHitBox::CircleHitBox(const sf::Vector2f &point, float rayon1)
 	{
 		p = point;
 		rayon = rayon1;
@@ -60,7 +60,7 @@ namespace collision
 		return (dis2centre < (rayon1 + rayon2)*(rayon1 + rayon2));
 	}
 	
-	bool collision(const sf::Vector2f &point, const CercleHitBox &cercleBox)
+	bool collision(const sf::Vector2f &point, const CircleHitBox &cercleBox)
 	{
 		sf::Vector2f C(cercleBox.p);
 		float x = point.x, y = point.y;
@@ -73,7 +73,7 @@ namespace collision
 			return true;
 	}
 	
-	bool collision(const CercleHitBox &cercleBox, const LineHitBox &lineBox)
+	bool collision(const CircleHitBox &cercleBox, const LineHitBox &lineBox)
 	{
 		sf::Vector2f A(lineBox.p1), B(lineBox.p2), C(cercleBox.p);
 		
@@ -96,7 +96,7 @@ namespace collision
 	    return false;
 	}
 	
-	bool collision(const CercleHitBox &cercleBox1, const CercleHitBox &cercleBox2)
+	bool collision(const CircleHitBox &cercleBox1, const CircleHitBox &cercleBox2)
 	{
 		sf::Vector2f C1(cercleBox1.p), C2(cercleBox2.p);
 		float d2 = (C1.x-C2.x)*(C1.x-C2.x) + (C1.y-C2.y)*(C1.y-C2.y);

@@ -9,6 +9,7 @@
 #include <SFML/Graphics/Sprite.hpp>
 
 #include "Timer.hpp"
+#include "collision.hpp"
 
 
 namespace sf
@@ -16,9 +17,6 @@ namespace sf
 	class Texture;
 }
 
-
-
-const unsigned int DEFAULT_CAR_ACCELERATION = 1;
 
 
 
@@ -33,6 +31,8 @@ class Car : public sf::Drawable, public sf::Transformable
 		void rotate(float rot);
 
 		void apply_physics();
+
+		collision::CircleHitBox getHitBox() const;
 
 	protected:
 		virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
@@ -52,8 +52,8 @@ class Car : public sf::Drawable, public sf::Transformable
 		sf::Vector2f m_speedVector;
 		float m_maxSpeed;
 
-		//Constants
-		sf::Vector2f dimension;
+		
+		float m_hitBoxRadius;
 };
 
 

@@ -15,6 +15,7 @@ class Timer
 		Timer(const sf::Time &duration);
 
 		void setDuration(const sf::Time &duration);
+		sf::Time getDuration() const;
 
 		
 		bool ticked(); //exceeded the specified duration
@@ -22,6 +23,8 @@ class Timer
 		sf::Time getExceededDuration() const;
 
 		void restart();
+
+		void autoSleep();
 
 
 		//global clock that will be followed by all of the timers

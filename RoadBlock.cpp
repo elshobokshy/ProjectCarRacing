@@ -2,6 +2,7 @@
 
 #include <SFML/Graphics/RenderTarget.hpp>
 #include "FileLoader.hpp"
+#include "collision.hpp"
 
 #include <iostream>
 
@@ -13,24 +14,16 @@ const sf::Texture RoadBlock::grassTexture = createFromFile<sf::Texture>(GRASS_TE
 
 const sf::Vector2i RoadBlock::texSize = sf::Vector2i(256, 256);
 
+static const std::vector<collision::LineHitBox> bigArcHitBox = getBigArcHitBox();
+static const std::vector<collision::LineHitBox> smallArcHitBox = getSmallArcHitBox();
+static const std::vector<collision::LineHitBox> straightHitBox = getStraightHitBox();
+
+
 
 RoadBlock::RoadBlock()
 {
 	m_sprite.setOrigin(float(texSize.x)/2.f, float(texSize.y)/2.f);
 }
-
-
-
-
-/*RoadBlock::RoadBlock(const RoadBlock &other): 
-	sf::Drawable(other), sf::Transformable(other)
-{
-	setPosition(other.sf::Transformable::getPosition());
-	setRotation(other.sf::Transformable::getRotation());
-}*/
-
-
-
 
 
 
@@ -70,7 +63,7 @@ void RoadBlock::setRotation(rotation r)
 
 	switch(r)
 	{
-		case right: //TODO FIX
+		case right:
 			m_sprite.setRotation(90);
 			break;
 		case left:
@@ -113,12 +106,13 @@ void RoadBlock::setType(roadType t)
 RoadBlock::rotation RoadBlock::getRotation()
 {
 	float r = m_sprite.getRotation();
+	std::cout<< r<< '\n';
 	switch(int(r))
 	{
 		case 90:
 			return right;
 			break;
-		case -90:
+		case 270:
 			return left;
 			break;
 		case 180:
@@ -229,5 +223,39 @@ RoadBlock::roadType operator++(RoadBlock::roadType &r, int)
 }
 
 
+
+std::vector<collision::LineHitBox> getBigArcHitBox()
+{
+	using namespace collision;
+
+	std::vector<LineHitBox> hitBox(3);
+	hitBox[0] = LineHitBox(sf::Vector2f(31, 256), sf::Vector2f(31, 134));
+	hitBox[1] = LineHitBox(sf::Vector2f(31, 134), sf::Vector2f(121, 32));
+	hitBox[2] = LineHitBox(sf::Vector2f(121, 32), sf::Vector2f(256, 31));
+	return hitBox;
+}
+
+
+std::vector<collision::LineHitBox> getSmallArcHitBox()
+{
+	using namespace collision;
+
+	std::vector<LineHitBox> hitBox(2);
+	hitBox[0] = LineHitBox(sf::Vector2f(225, 255), sf::Vector2f(226, 224));
+	hitBox[1] = LineHitBox(sf::Vector2f(226, 224), sf::Vector2f(256, 225));
+	return hitBox;
+}
+
+
+
+std::vector<collision::LineHitBox> getStraightHitBox()
+{
+	using namespace collision;
+
+	std::vector<LineHitBox> hitBox(2);
+	hitBox[0] = LineHitBox(sf::Vector2f(31, 256), sf::Vector2f(31, 0));
+	hitBox[1] = LineHitBox(sf::Vector2f(225, 256), sf::Vector2f(225, 0));
+	return hitBox;
+}
 
 
