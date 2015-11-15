@@ -75,12 +75,6 @@ namespace game
 
 	void game(sf::RenderWindow &window)
 	{
-		/*sf::Vector2f p(1, 0);
-		sf::Transform T;
-		T.rotate(180);
-		p = T * p;
-		std::cout<< p.x << " ; "<< p.y<< '\n';*/
-
 		//view that will follow the car
 		sf::View carView(sf::FloatRect(0, 0, 800, 600));
 		//carView.setSize(640, 480);
@@ -128,12 +122,11 @@ namespace game
 			for(Map::iterator it = map.begin(); it != map.end() && !collided; it++)
 			{	
 				collided = collision::collision(playerCar.getHitBox(), it->getHitBox());
-				//std::cout<< i<< '\n';
 				i++;
 			}
 			if(collided)
 			{
-				std::cout<< i<<"\n";
+				//std::cout<< i<<"\n";
 			}
 
 			// \game physics /////////////////////////
