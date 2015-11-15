@@ -14,9 +14,6 @@ const sf::Texture RoadBlock::grassTexture = createFromFile<sf::Texture>(GRASS_TE
 
 const sf::Vector2i RoadBlock::texSize = sf::Vector2i(256, 256);
 
-static const std::vector<collision::LineHitBox> bigArcHitBox = getBigArcHitBox();
-static const std::vector<collision::LineHitBox> smallArcHitBox = getSmallArcHitBox();
-static const std::vector<collision::LineHitBox> straightHitBox = getStraightHitBox();
 
 
 
@@ -103,7 +100,7 @@ void RoadBlock::setType(roadType t)
 
 
 
-RoadBlock::rotation RoadBlock::getRotation()
+RoadBlock::rotation RoadBlock::getRotation() const
 {
 	float r = m_sprite.getRotation();
 	std::cout<< r<< '\n';
@@ -121,22 +118,23 @@ RoadBlock::rotation RoadBlock::getRotation()
 		default:
 			break;
 	}
-	return standard; //only to dodge a warning
+	return standard; //shall never be executed
 }
 
 
 
-RoadBlock::roadType RoadBlock::getRType()
+RoadBlock::roadType RoadBlock::getRType() const
 {
 	return m_type;
 }
 
 
 
-/*sf::Vector2f RoadBlock::getPosition()
+
+RoadBox RoadBlock::getHitBox() const
 {
-	return m_sprite.getPosition();
-}*/
+	return RoadBox(*(this));
+}
 
 
 
@@ -224,38 +222,5 @@ RoadBlock::roadType operator++(RoadBlock::roadType &r, int)
 
 
 
-std::vector<collision::LineHitBox> getBigArcHitBox()
-{
-	using namespace collision;
-
-	std::vector<LineHitBox> hitBox(3);
-	hitBox[0] = LineHitBox(sf::Vector2f(31, 256), sf::Vector2f(31, 134));
-	hitBox[1] = LineHitBox(sf::Vector2f(31, 134), sf::Vector2f(121, 32));
-	hitBox[2] = LineHitBox(sf::Vector2f(121, 32), sf::Vector2f(256, 31));
-	return hitBox;
-}
-
-
-std::vector<collision::LineHitBox> getSmallArcHitBox()
-{
-	using namespace collision;
-
-	std::vector<LineHitBox> hitBox(2);
-	hitBox[0] = LineHitBox(sf::Vector2f(225, 255), sf::Vector2f(226, 224));
-	hitBox[1] = LineHitBox(sf::Vector2f(226, 224), sf::Vector2f(256, 225));
-	return hitBox;
-}
-
-
-
-std::vector<collision::LineHitBox> getStraightHitBox()
-{
-	using namespace collision;
-
-	std::vector<LineHitBox> hitBox(2);
-	hitBox[0] = LineHitBox(sf::Vector2f(31, 256), sf::Vector2f(31, 0));
-	hitBox[1] = LineHitBox(sf::Vector2f(225, 256), sf::Vector2f(225, 0));
-	return hitBox;
-}
 
 

@@ -75,11 +75,11 @@ namespace game
 
 	void game(sf::RenderWindow &window)
 	{
-		sf::Vector2f p(1, 0);
+		/*sf::Vector2f p(1, 0);
 		sf::Transform T;
 		T.rotate(180);
 		p = T * p;
-		std::cout<< p.x << " ; "<< p.y<< '\n';
+		std::cout<< p.x << " ; "<< p.y<< '\n';*/
 
 		//view that will follow the car
 		sf::View carView(sf::FloatRect(0, 0, 800, 600));
@@ -87,7 +87,6 @@ namespace game
 		window.setView(carView);
 
 		//image loading
-		//std::vector<sf::Texture> texTab;
 		sf::Texture texPlayerCar;
 		if(!texPlayerCar.loadFromFile(CAR_FILE))
 		{
@@ -97,6 +96,7 @@ namespace game
 		Map map(std::string("saveMap.pwet"));
 
 		Car playerCar(texPlayerCar, 50); //50 = max speed
+		playerCar.setPosition(sf::Vector2f(RoadBlock::texSize/2));
 
 		//sound loading
 
@@ -108,7 +108,7 @@ namespace game
 		Action action;
 
 		Timer loopTimer(sf::seconds(1./60.)); //60 fps
-		std::cout<< loopTimer.getDuration().asSeconds()<< '\n';
+		//std::cout<< loopTimer.getDuration().asSeconds()<< '\n';
 		loopTimer.restart();
 
 		//main loop
@@ -122,7 +122,19 @@ namespace game
 
 			playerCar.apply_physics();
 
-			
+			//collisions tests
+			bool collided = false;
+			int i = 0;
+			for(Map::iterator it = map.begin(); it != map.end() && !collided; it++)
+			{	
+				collided = collision::collision(playerCar.getHitBox(), it->getHitBox());
+				//std::cout<< i<< '\n';
+				i++;
+			}
+			if(collided)
+			{
+				std::cout<< i<<"\n";
+			}
 
 			// \game physics /////////////////////////
 
