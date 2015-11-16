@@ -1,0 +1,154 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+Action	game.cpp	/^	Action::Action(float orien, int accel): $/;"	f	class:game::Action
+Action	game.hpp	/^	struct Action$/;"	s	namespace:game
+Action	mapEdit.cpp	/^	Action::Action()$/;"	f	class:mapEdit::Action
+Action	mapEdit.hpp	/^	struct Action$/;"	s	namespace:mapEdit
+CAR_ACCELERATION	game.hpp	/^const unsigned int CAR_ACCELERATION = 1;$/;"	v
+CAR_SPEED	game.hpp	/^const unsigned int CAR_SPEED = 10;$/;"	v
+Car	Car.cpp	/^Car::Car(sf::Texture &tex, float maxSpeed)$/;"	f	class:Car
+Car	Car.hpp	/^class Car : public sf::Drawable, public sf::Transformable$/;"	c
+CircleHitBox	collision.cpp	/^	CircleHitBox::CircleHitBox()$/;"	f	class:collision::CircleHitBox
+CircleHitBox	collision.cpp	/^	CircleHitBox::CircleHitBox(const sf::Vector2f &point, float rayon1)$/;"	f	class:collision::CircleHitBox
+CircleHitBox	collision.hpp	/^	class CircleHitBox$/;"	c	namespace:collision
+DEF_CAR_HPP	Car.hpp	5;"	d
+DEF_COLLISION_HPP	collision.hpp	7;"	d
+DEF_FILELOADER_HPP	FileLoader.hpp	2;"	d
+DEF_GAME_HPP	game.hpp	2;"	d
+DEF_MAPEDIT_HPP	mapEdit.hpp	2;"	d
+DEF_MAP_H	Map.hpp	5;"	d
+DEF_OPENFILEERROR_HPP	OpenFileError.hpp	5;"	d
+DEF_ROADBLOCK_HPP	RoadBlock.hpp	2;"	d
+DEF_ROADBOX_HPP	RoadBox.hpp	6;"	d
+DEF_TIMER_HPP	Timer.hpp	5;"	d
+LineHitBox	collision.cpp	/^	LineHitBox::LineHitBox()$/;"	f	class:collision::LineHitBox
+LineHitBox	collision.cpp	/^	LineHitBox::LineHitBox(const sf::Vector2f &point1, const sf::Vector2f &point2)$/;"	f	class:collision::LineHitBox
+LineHitBox	collision.hpp	/^	class LineHitBox$/;"	c	namespace:collision
+Map	Map.cpp	/^Map::Map()$/;"	f	class:Map
+Map	Map.cpp	/^Map::Map(const std::string &fileName)$/;"	f	class:Map
+Map	Map.hpp	/^class Map : public sf::Drawable$/;"	c
+OpenFileError	OpenFileError.cpp	/^OpenFileError::OpenFileError()$/;"	f	class:OpenFileError
+OpenFileError	OpenFileError.hpp	/^class OpenFileError : public std::exception$/;"	c
+RectHitBox	collision.cpp	/^	RectHitBox::RectHitBox()$/;"	f	class:collision::RectHitBox
+RectHitBox	collision.cpp	/^	RectHitBox::RectHitBox(const sf::FloatRect &rect1, float orient1)$/;"	f	class:collision::RectHitBox
+RectHitBox	collision.hpp	/^	class RectHitBox$/;"	c	namespace:collision
+RoadBlock	RoadBlock.cpp	/^RoadBlock::RoadBlock()$/;"	f	class:RoadBlock
+RoadBlock	RoadBlock.cpp	/^RoadBlock::RoadBlock(const sf::Texture &texture, roadType t, rotation r, const sf::Vector2f &pos)$/;"	f	class:RoadBlock
+RoadBlock	RoadBlock.cpp	/^RoadBlock::RoadBlock(roadType t, rotation r, const sf::Vector2f &pos)$/;"	f	class:RoadBlock
+RoadBlock	RoadBlock.hpp	/^class RoadBlock : public sf::Drawable, public sf::Transformable$/;"	c
+RoadBox	RoadBox.cpp	/^RoadBox::RoadBox(const RoadBlock &roadBlock)$/;"	f	class:RoadBox
+RoadBox	RoadBox.hpp	/^class RoadBox$/;"	c
+Timer	Timer.cpp	/^Timer::Timer()$/;"	f	class:Timer
+Timer	Timer.cpp	/^Timer::Timer(const sf::Time &duration): m_duration(duration)$/;"	f	class:Timer
+Timer	Timer.hpp	/^class Timer$/;"	c
+accelerate	Car.cpp	/^void Car::accelerate(float accel)$/;"	f	class:Car
+acceleration	game.hpp	/^		int acceleration;$/;"	m	struct:game::Action
+apply_physics	Car.cpp	/^void Car::apply_physics()$/;"	f	class:Car
+autoSleep	Timer.cpp	/^void Timer::autoSleep()$/;"	f	class:Timer
+begin	Map.cpp	/^Map::iterator Map::begin()$/;"	f	class:Map
+bigArcHitBox	RoadBox.cpp	/^static const std::vector<collision::LineHitBox> bigArcHitBox = pv::getBigArcHitBox();$/;"	v	file:
+bigArcHitBox	RoadBox.hpp	/^		static const std::vector<collision::LineHitBox> bigArcHitBox;$/;"	m	class:RoadBox
+collision	collision.cpp	/^	bool collision(const CircleHitBox &cercleBox, const LineHitBox &lineBox)$/;"	f	namespace:collision
+collision	collision.cpp	/^	bool collision(const CircleHitBox &cercleBox1, const CircleHitBox &cercleBox2)$/;"	f	namespace:collision
+collision	collision.cpp	/^	bool collision(const RectHitBox &rectBox1, const RectHitBox &rectBox2)$/;"	f	namespace:collision
+collision	collision.cpp	/^	bool collision(const sf::Vector2f &point, const CircleHitBox &cercleBox)$/;"	f	namespace:collision
+collision	collision.cpp	/^namespace collision$/;"	n	file:
+collision	collision.hpp	/^namespace collision$/;"	n
+corner	RoadBlock.hpp	/^			corner = 1$/;"	e	enum:RoadBlock::roadType
+cornerTexture	RoadBlock.cpp	/^const sf::Texture RoadBlock::cornerTexture = createFromFile<sf::Texture>(CORNER_TEXTURE_NAME);$/;"	m	class:RoadBlock	file:
+cornerTexture	RoadBlock.hpp	/^		static const sf::Texture cornerTexture;$/;"	m	class:RoadBlock
+down	RoadBlock.hpp	/^			down = 3$/;"	e	enum:RoadBlock::rotation
+draw	Car.cpp	/^void Car::draw(sf::RenderTarget &target, sf::RenderStates states) const$/;"	f	class:Car
+draw	Map.cpp	/^void Map::draw(sf::RenderTarget &target, sf::RenderStates states) const$/;"	f	class:Map
+draw	RoadBlock.cpp	/^void RoadBlock::draw(sf::RenderTarget &target, sf::RenderStates states) const$/;"	f	class:RoadBlock
+end	Map.cpp	/^Map::iterator Map::end()$/;"	f	class:Map
+game	game.cpp	/^	void game(sf::RenderWindow &window)$/;"	f	namespace:game
+game	game.cpp	/^namespace game$/;"	n	file:
+game	game.hpp	/^namespace game$/;"	n
+getBigArcHitBox	RoadBox.cpp	/^	static std::vector<collision::LineHitBox> getBigArcHitBox()$/;"	f	namespace:pv
+getDuration	Timer.cpp	/^sf::Time Timer::getDuration() const$/;"	f	class:Timer
+getEvents	game.cpp	/^	void getEvents(sf::RenderWindow &window, Action &action)$/;"	f	namespace:game
+getEvents	mapEdit.cpp	/^	void getEvents(sf::RenderWindow &window, Action &action)$/;"	f	namespace:mapEdit
+getExceededDuration	Timer.cpp	/^sf::Time Timer::getExceededDuration() const$/;"	f	class:Timer
+getFullWaitedDuration	Timer.cpp	/^sf::Time Timer::getFullWaitedDuration() const$/;"	f	class:Timer
+getHitBox	Car.cpp	/^collision::CircleHitBox Car::getHitBox() const$/;"	f	class:Car
+getRType	RoadBlock.cpp	/^RoadBlock::roadType RoadBlock::getRType()$/;"	f	class:RoadBlock
+getRotation	RoadBlock.cpp	/^RoadBlock::rotation RoadBlock::getRotation()$/;"	f	class:RoadBlock
+getSmallArcHitBox	RoadBox.cpp	/^	static std::vector<collision::LineHitBox> getSmallArcHitBox()$/;"	f	namespace:pv
+getStraightHitBox	RoadBox.cpp	/^	static std::vector<collision::LineHitBox> getStraightHitBox()$/;"	f	namespace:pv
+globalTime	Timer.cpp	/^sf::Time Timer::globalTime()$/;"	f	class:Timer
+grassTexture	RoadBlock.cpp	/^const sf::Texture RoadBlock::grassTexture = createFromFile<sf::Texture>(GRASS_TEXTURE_NAME);$/;"	m	class:RoadBlock	file:
+grassTexture	RoadBlock.hpp	/^		static const sf::Texture grassTexture;$/;"	m	class:RoadBlock
+hidden	Map.hpp	/^namespace hidden$/;"	n
+hitBox	RoadBox.hpp	/^		std::vector<collision::LineHitBox> hitBox;$/;"	m	class:RoadBox
+iterator	Map.hpp	/^		typedef std::list<RoadBlock>::iterator iterator;$/;"	t	class:Map
+keepCarOnRoad	game.cpp	/^void keepCarOnRoad(Car &car, Map &map, Map::iterator& it)$/;"	f
+left	RoadBlock.hpp	/^			left = 2, $/;"	e	enum:RoadBlock::rotation
+loadCars	game.cpp	/^	void loadCars(std::vector<Car> &carsTab, std::vector<sf::Texture> &texTab)$/;"	f	namespace:game
+loadFromFile	Map.cpp	/^void Map::loadFromFile(const std::string &fileName)$/;"	f	class:Map
+m_BlockList	Map.hpp	/^		std::list<RoadBlock> m_BlockList;$/;"	m	class:Map
+m_acceleration	Car.hpp	/^		float m_acceleration;$/;"	m	class:Car
+m_duration	Timer.hpp	/^		sf::Time m_duration;$/;"	m	class:Timer
+m_hitBoxRadius	Car.hpp	/^		float m_hitBoxRadius;$/;"	m	class:Car
+m_maxSpeed	Car.hpp	/^		float m_maxSpeed;$/;"	m	class:Car
+m_oldTime	Timer.hpp	/^		sf::Time m_oldTime; \/\/Last time the clock ticked$/;"	m	class:Timer
+m_physicTimer	Car.hpp	/^		Timer m_physicTimer; \/\/timer that permit the physics to apply at every frame$/;"	m	class:Car
+m_rotation	Car.hpp	/^		float m_rotation;$/;"	m	class:Car
+m_speedVector	Car.hpp	/^		sf::Vector2f m_speedVector;$/;"	m	class:Car
+m_sprite	Car.hpp	/^		sf::Sprite m_sprite;$/;"	m	class:Car
+m_sprite	RoadBlock.hpp	/^		sf::Sprite m_sprite;$/;"	m	class:RoadBlock
+m_startingTimeShift	Timer.hpp	/^		sf::Time m_startingTimeShift; \/\/shift from the programClock$/;"	m	class:Timer
+m_type	RoadBlock.hpp	/^		roadType m_type;$/;"	m	class:RoadBlock
+main	main.cpp	/^int main(int argc, char **argv)$/;"	f
+mapEdit	mapEdit.cpp	/^	void mapEdit(sf::RenderWindow &window)$/;"	f	namespace:mapEdit
+mapEdit	mapEdit.cpp	/^namespace mapEdit$/;"	n	file:
+mapEdit	mapEdit.hpp	/^namespace mapEdit$/;"	n
+norm	Car.cpp	/^float Car::norm(const sf::Vector2f &v) const$/;"	f	class:Car
+operator ++	RoadBlock.cpp	/^RoadBlock::roadType operator++(RoadBlock::roadType &r, int)$/;"	f
+operator ++	RoadBlock.cpp	/^RoadBlock::rotation operator++(RoadBlock::rotation &r, int nn)$/;"	f
+operator --	RoadBlock.cpp	/^RoadBlock::rotation operator--(RoadBlock::rotation &r, int nn)$/;"	f
+orientation	collision.hpp	/^			float orientation;$/;"	m	class:collision::RectHitBox
+orientation	game.hpp	/^		float orientation;$/;"	m	struct:game::Action
+p	collision.hpp	/^			sf::Vector2f p;$/;"	m	class:collision::CircleHitBox
+p1	collision.hpp	/^			sf::Vector2f p1;$/;"	m	class:collision::LineHitBox
+p2	collision.hpp	/^			sf::Vector2f p2;$/;"	m	class:collision::LineHitBox
+placeUnplace	mapEdit.hpp	/^		bool placeUnplace;$/;"	m	struct:mapEdit::Action
+programClock	Timer.cpp	/^sf::Clock Timer::programClock;$/;"	m	class:Timer	file:
+programClock	Timer.hpp	/^		static sf::Clock programClock;$/;"	m	class:Timer
+push_back	Map.cpp	/^void Map::push_back(const RoadBlock &RdBk)$/;"	f	class:Map
+pv	RoadBox.cpp	/^namespace pv \/\/private$/;"	n	file:
+rayon	collision.hpp	/^			float rayon;$/;"	m	class:collision::CircleHitBox
+rect	collision.hpp	/^			sf::FloatRect rect;$/;"	m	class:collision::RectHitBox
+restart	Timer.cpp	/^void Timer::restart()$/;"	f	class:Timer
+right	RoadBlock.hpp	/^			right= 1, $/;"	e	enum:RoadBlock::rotation
+roadType	RoadBlock.hpp	/^		enum roadType$/;"	g	class:RoadBlock
+rotate	Car.cpp	/^void Car::rotate(float rot)$/;"	f	class:Car
+rotation	RoadBlock.hpp	/^		enum rotation \/\/clockwise$/;"	g	class:RoadBlock
+rotation	mapEdit.hpp	/^		RoadBlock::rotation rotation;$/;"	m	struct:mapEdit::Action
+rtype	mapEdit.hpp	/^		RoadBlock::roadType rtype;$/;"	m	struct:mapEdit::Action
+saveToFile	Map.cpp	/^void Map::saveToFile(const std::string &fileName)$/;"	f	class:Map
+setDuration	Timer.cpp	/^void Timer::setDuration(const sf::Time &duration)$/;"	f	class:Timer
+setRotation	RoadBlock.cpp	/^void RoadBlock::setRotation(rotation r)$/;"	f	class:RoadBlock
+setType	RoadBlock.cpp	/^void RoadBlock::setType(roadType t)$/;"	f	class:RoadBlock
+sf	Car.hpp	/^namespace sf$/;"	n
+sf	Map.hpp	/^namespace sf$/;"	n
+sf	RoadBlock.hpp	/^namespace sf$/;"	n
+sf	game.hpp	/^namespace sf$/;"	n
+sf	mapEdit.hpp	/^namespace sf$/;"	n
+smallArcHitBox	RoadBox.cpp	/^static const std::vector<collision::LineHitBox> smallArcHitBox = pv::getSmallArcHitBox();$/;"	v	file:
+smallArcHitBox	RoadBox.hpp	/^		static const std::vector<collision::LineHitBox> smallArcHitBox;$/;"	m	class:RoadBox
+standard	RoadBlock.hpp	/^			standard = 0, $/;"	e	enum:RoadBlock::rotation
+straight	RoadBlock.hpp	/^			straight = 0, $/;"	e	enum:RoadBlock::roadType
+straightHitBox	RoadBox.cpp	/^static const std::vector<collision::LineHitBox> straightHitBox = pv::getStraightHitBox();$/;"	v	file:
+straightHitBox	RoadBox.hpp	/^		static const std::vector<collision::LineHitBox> straightHitBox;$/;"	m	class:RoadBox
+straightTexture	RoadBlock.cpp	/^const sf::Texture RoadBlock::straightTexture = createFromFile<sf::Texture>(STRAIGHT_TEXTURE_NAME);$/;"	m	class:RoadBlock	file:
+straightTexture	RoadBlock.hpp	/^		static const sf::Texture straightTexture;$/;"	m	class:RoadBlock
+texSize	RoadBlock.cpp	/^const sf::Vector2i RoadBlock::texSize = sf::Vector2i(256, 256);$/;"	m	class:RoadBlock	file:
+texSize	RoadBlock.hpp	/^		static const sf::Vector2i texSize;$/;"	m	class:RoadBlock
+ticked	Timer.cpp	/^bool Timer::ticked()$/;"	f	class:Timer
+what	OpenFileError.cpp	/^const char* OpenFileError::what() const throw()$/;"	f	class:OpenFileError
+~OpenFileError	OpenFileError.cpp	/^OpenFileError::~OpenFileError() throw()$/;"	f	class:OpenFileError

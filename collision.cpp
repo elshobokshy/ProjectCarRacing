@@ -98,7 +98,7 @@ namespace collision
 		AC.x = C.x - A.x;
 		AC.y = C.y - A.y;
 		
-		float numerateur = u.x*AC.y - u.y*AC.y;
+		float numerateur = u.x*AC.y - u.y*AC.x;
 		if(numerateur < 0)
 		{
 			numerateur = -numerateur;

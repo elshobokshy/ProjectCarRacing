@@ -55,6 +55,8 @@ namespace collision
 	bool collision(const RectHitBox &rectBox1, const RectHitBox &rectBox2);
 	bool collision(const RectHitBox &rectBox, const LineHitBox &lineBox);
 	bool collisionAsInfiniteLine(const CircleHitBox &cercleBox, const LineHitBox &lineBox);
+
+	//circle and segment
 	bool collision(const CircleHitBox &cercleBox, const LineHitBox &lineBox);
 	bool collision(const sf::Vector2f &point, const CircleHitBox &cercleBox);
 	bool collision(const CircleHitBox &cercleBox1, const CircleHitBox &cercleBox2);
