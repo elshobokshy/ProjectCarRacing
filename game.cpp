@@ -106,6 +106,8 @@ namespace game
 		Timer loopTimer(sf::seconds(1./60.)); //60 fps
 		//std::cout<< loopTimer.getDuration().asSeconds()<< '\n';
 		loopTimer.restart();
+		
+		int j = 0; //count the number of collisions (max 1 each frame)
 
 		//main loop
 		while(true)
@@ -124,11 +126,10 @@ namespace game
 			for(Map::iterator it = map.begin(); it != map.end() && !collided; it++)
 			{	
 				collided = collision::collision(playerCar.getHitBox(), it->getHitBox());
-				i++;
 			}
 			if(collided)
 			{
-				//std::cout<< i<<"\n";
+				std::cout<< ++j<<"\n";
 			}
 
 			// \game physics /////////////////////////
