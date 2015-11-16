@@ -10,6 +10,10 @@
 #include <SFML/Graphics/Sprite.hpp>
 
 #include <string>
+#include <vector>
+
+#include "collision.hpp"
+#include "RoadBox.hpp"
 
 namespace sf
 {
@@ -41,19 +45,18 @@ class RoadBlock : public sf::Drawable, public sf::Transformable
 
 	
 		RoadBlock();
-		//RoadBlock(const RoadBlock &other);
 		RoadBlock(const sf::Texture &texture, roadType t, rotation r, const sf::Vector2f &pos);
 		RoadBlock(roadType t, rotation r, const sf::Vector2f &pos = sf::Vector2f(0.0, 0.0));
 
-		rotation getRotation();
-
-		roadType getRType();
-
-		//sf::Vector2f getPosition();
-
+		rotation getRotation() const;
+		roadType getRType() const;
+		
+		
 		void setRotation(rotation r);
-
 		void setType(roadType t);
+
+
+		RoadBox getHitBox() const;
 
 
 		//standard shared textures
@@ -63,19 +66,29 @@ class RoadBlock : public sf::Drawable, public sf::Transformable
 
 		//standard shared textures size
 		static const sf::Vector2i texSize;
+
 		
+	protected:	
 		virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const;
+
 	private:
 		sf::Sprite m_sprite;
 		roadType m_type;
 };
 
 
+
+//turn 90° clockwise
 RoadBlock::rotation operator++(RoadBlock::rotation &r, int);
+
+//turn -90° clockwise
 RoadBlock::rotation operator--(RoadBlock::rotation &r, int);
 
 
+//change of roadType to the next one
 RoadBlock::roadType operator++(RoadBlock::roadType &r, int);
+
+
 
 
 #endif

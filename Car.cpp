@@ -21,11 +21,13 @@ Car::Car(sf::Texture &tex, float maxSpeed)
 	m_sprite.setOrigin(float(texSize.x)/2.f, float(texSize.y)/2.f);
 	m_speedVector = sf::Vector2f(0, 0);
 
+	//to take the included circle, take the min btw width and height
+	m_hitBoxRadius = 60;//texSize.x > texSize.y ? texSize.x/2 : texSize.y/2;
+
 	m_maxSpeed = maxSpeed;
 
-	m_physicTimer.setDuration(sf::seconds(0.0166667)); //wtf ?!
+	m_physicTimer.setDuration(sf::seconds(1./60.)); //60 fps
 	m_physicTimer.restart();
-	std::cout<< 0.0166667 * 60<< "\n";
 
 }
 
@@ -61,7 +63,7 @@ void Car::apply_physics()
 	{
 		float currentSpeed = norm(m_speedVector);
 
-		sf::Transformable::rotate(m_rotation*(currentSpeed / m_maxSpeed));
+		sf::Transformable::rotate(m_rotation/**(currentSpeed / m_maxSpeed)*/);
 		float rotation = getRotation();
 
 		float accelFactor = m_physicTimer.getFullWaitedDuration().asSeconds();
@@ -92,6 +94,15 @@ float Car::norm(const sf::Vector2f &v) const
 {
 	return std::sqrt((v.y*v.y) + (v.x*v.x));
 }
+
+
+
+
+collision::CircleHitBox Car::getHitBox() const
+{
+	return collision::CircleHitBox(getPosition(), m_hitBoxRadius);
+}
+
 
 
 

@@ -1,4 +1,8 @@
 #include "collision.hpp"
+#include "RoadBox.hpp"
+#include <cmath> //sqrt needed
+
+#include <iostream>
 
 
 namespace collision
@@ -30,14 +34,22 @@ namespace collision
 		p1 = point1;
 		p2 = point2;
 	}
+
+
+	void LineHitBox::move(const sf::Vector2f &point2)
+	{
+		p1 += point2;
+		p2 += point2;
+	}
+
 	
-	CercleHitBox::CercleHitBox()
+	CircleHitBox::CircleHitBox()
 	{
 		p = sf::Vector2f(0,0);
 		rayon = 1;
 	}
 	
-	CercleHitBox::CercleHitBox(const sf::Vector2f &point, float rayon1)
+	CircleHitBox::CircleHitBox(const sf::Vector2f &point, float rayon1)
 	{
 		p = point;
 		rayon = rayon1;
@@ -59,7 +71,7 @@ namespace collision
 		return (dis2centre < (rayon1 + rayon2)*(rayon1 + rayon2));
 	}
 	
-	bool collision(const sf::Vector2f &point, const CercleHitBox &cercleBox)
+	bool collision(const sf::Vector2f &point, const CircleHitBox &cercleBox)
 	{
 		sf::Vector2f C(cercleBox.p);
 		float x = point.x, y = point.y;
@@ -71,31 +83,68 @@ namespace collision
 		else
 			return true;
 	}
-	
-	bool collision(const CercleHitBox &cercleBox, const LineHitBox &lineBox)
+
+
+
+	bool collisionAsInfiniteLine(const CircleHitBox &cercleBox, const LineHitBox &lineBox)
 	{
 		sf::Vector2f A(lineBox.p1), B(lineBox.p2), C(cercleBox.p);
+		sf::Vector2f u;
+		u.x = B.x - A.x;
+		u.y = B.y - A.y;
+
+		sf::Vector2f AC;
+		AC.x = C.x - A.x;
+		AC.y = C.y - A.y;
 		
-		sf::Vector2f AB,AC,BC;
-		AB.x = B.x - A.x;
-	    AB.y = B.y - A.y;
-	    AC.x = C.x - A.x;
-	    AC.y = C.y - A.y;
-	    BC.x = C.x - B.x;
-	    BC.y = C.y - B.y;
-	    float pscal1 = AB.x*AC.x + AB.y*AC.y;  // produit scalaire
-	    float pscal2 = (-AB.x)*BC.x + (-AB.y)*BC.y;  // produit scalaire
-	    if (pscal1>=0 && pscal2>=0)
-			return true;   // I entre A et B, ok.
-	    // dernière possibilité, A ou B dans le cercle
-	    if (collision(A,cercleBox))
-		  return true;
-	    if (collision(B,cercleBox))
-		  return true;
-	    return false;
+		float numerateur = u.x*AC.y - u.y*AC.y;
+		if(numerateur < 0)
+		{
+			numerateur = -numerateur;
+		}
+
+		float denominateur = std::sqrt(u.x*u.x + u.y*u.y);
+		float CI = numerateur / denominateur;
+		if(CI < cercleBox.rayon)
+		{
+			return true;
+		}
+		return false;
 	}
 	
-	bool collision(const CercleHitBox &cercleBox1, const CercleHitBox &cercleBox2)
+
+
+	
+	bool collision(const CircleHitBox &cercleBox, const LineHitBox &lineBox)
+	{
+		sf::Vector2f A(lineBox.p1), B(lineBox.p2), C(cercleBox.p);
+
+		if(!collisionAsInfiniteLine(cercleBox, lineBox))
+		{
+			return false;
+		}
+
+
+		sf::Vector2f AB,AC,BC;
+		AB.x = B.x - A.x;
+		AB.y = B.y - A.y;
+		AC.x = C.x - A.x;
+		AC.y = C.y - A.y;
+		BC.x = C.x - B.x;
+		BC.y = C.y - B.y;
+		float pscal1 = AB.x*AC.x + AB.y*AC.y;  // produit scalaire
+		float pscal2 = (-AB.x)*BC.x + (-AB.y)*BC.y;  // produit scalaire
+		if (pscal1>=0 && pscal2>=0)
+			return true;   // I entre A et B, ok.
+		// dernière possibilité, A ou B dans le cercle
+		if (collision(A,cercleBox))
+			return true;
+		if (collision(B,cercleBox))
+			return true;
+		return false;
+	}
+	
+	bool collision(const CircleHitBox &cercleBox1, const CircleHitBox &cercleBox2)
 	{
 		sf::Vector2f C1(cercleBox1.p), C2(cercleBox2.p);
 		float d2 = (C1.x-C2.x)*(C1.x-C2.x) + (C1.y-C2.y)*(C1.y-C2.y);
@@ -106,4 +155,24 @@ namespace collision
 	}
 
 
-}
+
+	
+	bool collision(const CircleHitBox &circleBox, const RoadBox &roadBox)
+	{
+		bool collided = false;
+		const std::vector<collision::LineHitBox> &hitBox = roadBox.getLineArray();
+
+		for(unsigned int i = 0; i < hitBox.size() && !collided; i++)
+		{
+			collided = collision(circleBox, hitBox[i]);
+			if(collided)
+			{
+				std::cout<< "collision\n";
+			}
+		}
+
+		return collided;
+	}
+
+
+} //namespace collision

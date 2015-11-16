@@ -110,3 +110,42 @@ void Map::push_back(const RoadBlock &RdBk)
 		m_BlockList.push_back(RdBk);
 	}
 }
+
+
+
+
+Map::iterator Map::begin()
+{
+	return m_BlockList.begin();
+}
+
+
+
+Map::iterator Map::end()
+{
+	return m_BlockList.end();
+}
+
+
+
+
+
+/*
+namespace hidden
+{
+	MapIterator::MapIterator()
+	{
+	}
+
+
+	MapIterator operator++(int n)
+	{
+		MapIterator ans(*this);
+		if(!m_listIterator.
+	}
+}
+*/
+
+
+
+

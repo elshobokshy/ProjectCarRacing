@@ -2,6 +2,7 @@
 
 #include <SFML/Graphics/RenderTarget.hpp>
 #include "FileLoader.hpp"
+#include "collision.hpp"
 
 #include <iostream>
 
@@ -14,6 +15,8 @@ const sf::Texture RoadBlock::grassTexture = createFromFile<sf::Texture>(GRASS_TE
 const sf::Vector2i RoadBlock::texSize = sf::Vector2i(256, 256);
 
 
+
+
 RoadBlock::RoadBlock()
 {
 	m_sprite.setOrigin(float(texSize.x)/2.f, float(texSize.y)/2.f);
@@ -21,6 +24,10 @@ RoadBlock::RoadBlock()
 
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 9e5ad6be2890d361aee834c7362bd5bf8732dc4d
 RoadBlock::RoadBlock(const sf::Texture &texture, roadType t, rotation r, const sf::Vector2f &pos)
 {
 	setPosition(pos);
@@ -56,7 +63,7 @@ void RoadBlock::setRotation(rotation r)
 
 	switch(r)
 	{
-		case right: //TODO FIX
+		case right:
 			m_sprite.setRotation(90);
 			break;
 		case left:
@@ -96,15 +103,16 @@ void RoadBlock::setType(roadType t)
 
 
 
-RoadBlock::rotation RoadBlock::getRotation()
+RoadBlock::rotation RoadBlock::getRotation() const
 {
 	float r = m_sprite.getRotation();
+	std::cout<< r<< '\n';
 	switch(int(r))
 	{
 		case 90:
 			return right;
 			break;
-		case -90:
+		case 270:
 			return left;
 			break;
 		case 180:
@@ -113,22 +121,23 @@ RoadBlock::rotation RoadBlock::getRotation()
 		default:
 			break;
 	}
-	return standard; //only to dodge a warning
+	return standard; //shall never be executed
 }
 
 
 
-RoadBlock::roadType RoadBlock::getRType()
+RoadBlock::roadType RoadBlock::getRType() const
 {
 	return m_type;
 }
 
 
 
-/*sf::Vector2f RoadBlock::getPosition()
+
+RoadBox RoadBlock::getHitBox() const
 {
-	return m_sprite.getPosition();
-}*/
+	return RoadBox(*(this));
+}
 
 
 
@@ -213,6 +222,7 @@ RoadBlock::roadType operator++(RoadBlock::roadType &r, int)
 	}
 	return ans;
 }
+
 
 
 

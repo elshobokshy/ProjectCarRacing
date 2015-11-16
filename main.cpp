@@ -5,6 +5,8 @@
 #include <iostream>
 #include <string>
 
+#include <SFML/Graphics/Transform.hpp>
+
 
 int main(int argc, char **argv)
 {
@@ -35,9 +37,6 @@ int main(int argc, char **argv)
 		game::game(window);
 	}
 
-
-
-	
 	
 	return EXIT_SUCCESS;
 }

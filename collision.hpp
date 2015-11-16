@@ -8,6 +8,9 @@
 
 
 #include <SFML/Graphics/Rect.hpp>
+//#include "RoadBox.hpp"
+
+class RoadBox;
 
 
 namespace collision
@@ -31,29 +34,36 @@ namespace collision
 		public:
 			LineHitBox();
 			LineHitBox(const sf::Vector2f &point1, const sf::Vector2f &point2);
-
+			
+			void move(const sf::Vector2f &point2);
 		
 			sf::Vector2f p1;
 			sf::Vector2f p2;
 	};
 
-	class CercleHitBox
+	class CircleHitBox
 	{
 		public:
-			CercleHitBox();
-			CercleHitBox(const sf::Vector2f &point, float rayon1);
+			CircleHitBox();
+			CircleHitBox(const sf::Vector2f &point, float rayon1);
 			
 			sf::Vector2f p;
 			float rayon;
 			
 	};
 
-	//TODO
 	bool collision(const RectHitBox &rectBox1, const RectHitBox &rectBox2);
 	bool collision(const RectHitBox &rectBox, const LineHitBox &lineBox);
-	bool collision(const CercleHitBox &cercleBox, const LineHitBox &lineBox);
-	bool collision(const sf::Vector2f &point, const CercleHitBox &cercleBox);
-	bool collision(const CercleHitBox &cercleBox1, const CercleHitBox &cercleBox2);
-}
+	bool collisionAsInfiniteLine(const CircleHitBox &cercleBox, const LineHitBox &lineBox);
+	bool collision(const CircleHitBox &cercleBox, const LineHitBox &lineBox);
+	bool collision(const sf::Vector2f &point, const CircleHitBox &cercleBox);
+	bool collision(const CircleHitBox &cercleBox1, const CircleHitBox &cercleBox2);
+
+	bool collision(const CircleHitBox &circleBox, const RoadBox &roadBox);
+
+
+} //namespace collision
+
+
 
 #endif

@@ -4,12 +4,17 @@
 #include <SFML/Window/Event.hpp>
 #include <SFML/Window/Keyboard.hpp>
 #include <SFML/Graphics/Texture.hpp>
+#include <SFML/Graphics/View.hpp>
 
 #include <iostream>
 
 #include "Map.hpp"
-
+#include "Timer.hpp"
 #include "OpenFileError.hpp"
+
+
+
+
 
 namespace game
 {
@@ -37,18 +42,6 @@ namespace game
 						case sf::Keyboard::Escape:
 							exit(EXIT_SUCCESS);
 							break;
-						/*case sf::Keyboard::Up:
-							action.acceleration = 1;
-							break;
-						case sf::Keyboard::Down:
-							action.acceleration = -1;
-							break;
-						case sf::Keyboard::Right:
-							action.orientation = 1;
-							break;
-						case sf::Keyboard::Left:
-							action.orientation = -1;
-							break;*/
 						default:
 							break;
 					}
@@ -82,8 +75,12 @@ namespace game
 
 	void game(sf::RenderWindow &window)
 	{
+		//view that will follow the car
+		sf::View carView(sf::FloatRect(0, 0, 800, 600));
+		//carView.setSize(640, 480);
+		window.setView(carView);
+
 		//image loading
-		//std::vector<sf::Texture> texTab;
 		sf::Texture texPlayerCar;
 		if(!texPlayerCar.loadFromFile(CAR_FILE))
 		{
@@ -92,12 +89,10 @@ namespace game
 		
 		Map map(std::string("saveMap.pwet"));
 
-		Car playerCar(texPlayerCar, 50);
+		std::cout<< map.begin()->getPosition().x<< " ; "<< map.begin()->getPosition().y<< '\n';
 
-		//std::vector<Car> carsTab;
-
-		//loadCars(carsTab, texTab);
-
+		Car playerCar(texPlayerCar, 50); //50 = max speed
+		playerCar.setPosition(sf::Vector2f(RoadBlock::texSize/2));
 
 		//sound loading
 
@@ -107,6 +102,10 @@ namespace game
 
 		//other variables
 		Action action;
+
+		Timer loopTimer(sf::seconds(1./60.)); //60 fps
+		//std::cout<< loopTimer.getDuration().asSeconds()<< '\n';
+		loopTimer.restart();
 
 		//main loop
 		while(true)
@@ -119,14 +118,39 @@ namespace game
 
 			playerCar.apply_physics();
 
+			//collisions tests
+			bool collided = false;
+			int i = 0;
+			for(Map::iterator it = map.begin(); it != map.end() && !collided; it++)
+			{	
+				collided = collision::collision(playerCar.getHitBox(), it->getHitBox());
+				i++;
+			}
+			if(collided)
+			{
+				//std::cout<< i<<"\n";
+			}
+
 			// \game physics /////////////////////////
 
+			//game display////////////////////////////
+			carView.setCenter(playerCar.getPosition());
+			window.setView(carView);
+
 			window.clear(sf::Color::Black);
-			//game display
+
 			window.draw(map);
 			window.draw(playerCar);
 
 			window.display();
+
+			// \game display//////////////////////////
+
+			//time handling///////////////////////////
+			
+			loopTimer.autoSleep();
+
+			// \time handling/////////////////////////	
 		}
 
 	}
@@ -154,3 +178,15 @@ namespace game
 
 
 }
+
+
+
+void keepCarOnRoad(Car &car, Map &map, Map::iterator& it)
+{
+	
+}
+
+
+
+
+
