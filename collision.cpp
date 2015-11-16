@@ -18,11 +18,10 @@ namespace collision
 	}
 
 
-
 	LineHitBox::LineHitBox()
 	{
 		p1 = sf::Vector2f(0, 0);
-		p2 = p1;
+		p2 = p1;0
 	}
 
 

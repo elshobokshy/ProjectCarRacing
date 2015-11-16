@@ -21,20 +21,6 @@ RoadBlock::RoadBlock()
 
 
 
-
-/*RoadBlock::RoadBlock(const RoadBlock &other): 
-	sf::Drawable(other), sf::Transformable(other)
-{
-	setPosition(other.sf::Transformable::getPosition());
-	setRotation(other.sf::Transformable::getRotation());
-}*/
-
-
-
-
-
-
-
 RoadBlock::RoadBlock(const sf::Texture &texture, roadType t, rotation r, const sf::Vector2f &pos)
 {
 	setPosition(pos);
