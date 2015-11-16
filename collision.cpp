@@ -168,7 +168,7 @@ namespace collision
 			collided = collision(circleBox, hitBox[i]);
 			if(collided)
 			{
-				//std::cout<< "collision\n";
+				std::cout<< "collision\n";
 			}
 		}
 

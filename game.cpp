@@ -89,6 +89,8 @@ namespace game
 		
 		Map map(std::string("saveMap.pwet"));
 
+		std::cout<< map.begin()->getPosition().x<< " ; "<< map.begin()->getPosition().y<< '\n';
+
 		Car playerCar(texPlayerCar, 50); //50 = max speed
 		playerCar.setPosition(sf::Vector2f(RoadBlock::texSize/2));
 
