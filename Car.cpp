@@ -22,7 +22,7 @@ Car::Car(sf::Texture &tex, float maxSpeed)
 	m_speedVector = sf::Vector2f(0, 0);
 
 	//to take the included circle, take the min btw width and height
-	m_hitBoxRadius = 60;//texSize.x > texSize.y ? texSize.x/2 : texSize.y/2;
+	m_hitBoxRadius = 93/2;
 
 	m_maxSpeed = maxSpeed;
 
