@@ -24,10 +24,7 @@ RoadBlock::RoadBlock()
 
 
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 9e5ad6be2890d361aee834c7362bd5bf8732dc4d
 RoadBlock::RoadBlock(const sf::Texture &texture, roadType t, rotation r, const sf::Vector2f &pos)
 {
 	setPosition(pos);
