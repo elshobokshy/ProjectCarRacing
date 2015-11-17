@@ -19,7 +19,7 @@ Car::Car(sf::Texture &tex, float maxSpeed)
 
 	sf::Vector2u texSize(tex.getSize());
 	m_sprite.setOrigin(float(texSize.x)/2.f, float(texSize.y)/2.f);
-	m_speedVector = sf::Vector2f(0, 0);
+	//m_speedVector = sf::Vector2f(0, 0);
 
 	//to take the included circle, take the min btw width and height
 	m_hitBoxRadius = 93/2;
@@ -61,7 +61,7 @@ void Car::apply_physics()
 {
 	if(m_physicTimer.ticked())
 	{
-		float currentSpeed = norm(m_speedVector);
+		//float currentSpeed = norm(m_speedVector);
 
 		sf::Transformable::rotate(m_rotation/**(currentSpeed / m_maxSpeed)*/);
 		float rotation = getRotation();
@@ -71,14 +71,30 @@ void Car::apply_physics()
 		//std::cout<< accelFactor * 60<< "\n";
 
 		//calculate the new speed with the acceleration
-		m_speedVector.x += std::cos(rotation*M_PI/180)*m_acceleration*accelFactor;
-		m_speedVector.y += std::sin(rotation*M_PI/180)*m_acceleration*accelFactor;
+		/*m_speedVector.x += std::cos(rotation*M_PI/180)*m_acceleration*accelFactor;
+		m_speedVector.y += std::sin(rotation*M_PI/180)*m_acceleration*accelFactor;*/
+		m_speed += accelFactor*m_acceleration;
+		if(m_speed > m_maxSpeed)
+		{
+			m_speed = m_maxSpeed;
+			//std::cout<< "max attained\n";
+		}
+		else if(m_speed < -m_maxSpeed)
+		{
+			m_speed = -m_maxSpeed;
+			//std::cout<< "min attained\n";
+		}
+
+		sf::Vector2f posOffset(
+		m_speed*accelFactor*std::cos(rotation*M_PI/180)
+		, m_speed*accelFactor*std::sin(rotation*M_PI/180)
+		);
 
 		//calculate the new position with the speed
-		move(m_speedVector);
+		move(posOffset);
 
 
-		m_acceleration = 6;
+		m_acceleration = 0;
 		m_physicTimer.restart();
 
 		//std::cout<< getPosition().x<< " ; "<< getPosition().y<< '\n';

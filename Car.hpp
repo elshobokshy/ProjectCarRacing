@@ -41,16 +41,17 @@ class Car : public sf::Drawable, public sf::Transformable
 		float norm(const sf::Vector2f &v) const;
 	
 
-
-		float m_acceleration;
+		//buffers used in physics
+		float m_acceleration; 		
 		float m_rotation;
 
 		sf::Sprite m_sprite;
 
 		Timer m_physicTimer; //timer that permit the physics to apply at every frame
 
-		sf::Vector2f m_speedVector;
+		//sf::Vector2f m_speedVector;
 		float m_maxSpeed;
+		float m_speed;
 
 		
 		float m_hitBoxRadius;

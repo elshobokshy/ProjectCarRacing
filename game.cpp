@@ -55,11 +55,11 @@ namespace game
 
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
 		{
-			action.acceleration = -5;
+			action.acceleration = -100;
 		}
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 		{
-			action.acceleration = 5;
+			action.acceleration = 100;
 		}
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 		{
@@ -91,7 +91,7 @@ namespace game
 
 		std::cout<< map.begin()->getPosition().x<< " ; "<< map.begin()->getPosition().y<< '\n';
 
-		Car playerCar(texPlayerCar, 50); //50 = max speed
+		Car playerCar(texPlayerCar, 200);
 		playerCar.setPosition(sf::Vector2f(RoadBlock::texSize/2));
 
 		//sound loading
