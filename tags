@@ -41,7 +41,7 @@ RoadBlock	RoadBlock.cpp	/^RoadBlock::RoadBlock(const sf::Texture &texture, roadT
 RoadBlock	RoadBlock.cpp	/^RoadBlock::RoadBlock(roadType t, rotation r, const sf::Vector2f &pos)$/;"	f	class:RoadBlock
 RoadBlock	RoadBlock.hpp	/^class RoadBlock : public sf::Drawable, public sf::Transformable$/;"	c
 RoadBox	RoadBox.cpp	/^RoadBox::RoadBox(const RoadBlock &roadBlock)$/;"	f	class:RoadBox
-RoadBox	RoadBox.hpp	/^class RoadBox$/;"	c
+RoadBox	RoadBox.hpp	/^class RoadBox: public sf::Transformable \/\/be careful with SFML transformations, none shall be used from a outside$/;"	c
 Timer	Timer.cpp	/^Timer::Timer()$/;"	f	class:Timer
 Timer	Timer.cpp	/^Timer::Timer(const sf::Time &duration): m_duration(duration)$/;"	f	class:Timer
 Timer	Timer.hpp	/^class Timer$/;"	c
@@ -50,14 +50,16 @@ acceleration	game.hpp	/^		int acceleration;$/;"	m	struct:game::Action
 apply_physics	Car.cpp	/^void Car::apply_physics()$/;"	f	class:Car
 autoSleep	Timer.cpp	/^void Timer::autoSleep()$/;"	f	class:Timer
 begin	Map.cpp	/^Map::iterator Map::begin()$/;"	f	class:Map
-bigArcHitBox	RoadBox.cpp	/^static const std::vector<collision::LineHitBox> bigArcHitBox = pv::getBigArcHitBox();$/;"	v	file:
+bigArcHitBox	RoadBox.cpp	/^const std::vector<collision::LineHitBox> RoadBox::bigArcHitBox = pv::getBigArcHitBox();$/;"	m	class:RoadBox	file:
 bigArcHitBox	RoadBox.hpp	/^		static const std::vector<collision::LineHitBox> bigArcHitBox;$/;"	m	class:RoadBox
 collision	collision.cpp	/^	bool collision(const CircleHitBox &cercleBox, const LineHitBox &lineBox)$/;"	f	namespace:collision
 collision	collision.cpp	/^	bool collision(const CircleHitBox &cercleBox1, const CircleHitBox &cercleBox2)$/;"	f	namespace:collision
+collision	collision.cpp	/^	bool collision(const CircleHitBox &circleBox, const RoadBox &roadBox)$/;"	f	namespace:collision
 collision	collision.cpp	/^	bool collision(const RectHitBox &rectBox1, const RectHitBox &rectBox2)$/;"	f	namespace:collision
 collision	collision.cpp	/^	bool collision(const sf::Vector2f &point, const CircleHitBox &cercleBox)$/;"	f	namespace:collision
 collision	collision.cpp	/^namespace collision$/;"	n	file:
 collision	collision.hpp	/^namespace collision$/;"	n
+collisionAsInfiniteLine	collision.cpp	/^	bool collisionAsInfiniteLine(const CircleHitBox &cercleBox, const LineHitBox &lineBox)$/;"	f	namespace:collision
 corner	RoadBlock.hpp	/^			corner = 1$/;"	e	enum:RoadBlock::roadType
 cornerTexture	RoadBlock.cpp	/^const sf::Texture RoadBlock::cornerTexture = createFromFile<sf::Texture>(CORNER_TEXTURE_NAME);$/;"	m	class:RoadBlock	file:
 cornerTexture	RoadBlock.hpp	/^		static const sf::Texture cornerTexture;$/;"	m	class:RoadBlock
@@ -76,15 +78,16 @@ getEvents	mapEdit.cpp	/^	void getEvents(sf::RenderWindow &window, Action &action
 getExceededDuration	Timer.cpp	/^sf::Time Timer::getExceededDuration() const$/;"	f	class:Timer
 getFullWaitedDuration	Timer.cpp	/^sf::Time Timer::getFullWaitedDuration() const$/;"	f	class:Timer
 getHitBox	Car.cpp	/^collision::CircleHitBox Car::getHitBox() const$/;"	f	class:Car
-getRType	RoadBlock.cpp	/^RoadBlock::roadType RoadBlock::getRType()$/;"	f	class:RoadBlock
-getRotation	RoadBlock.cpp	/^RoadBlock::rotation RoadBlock::getRotation()$/;"	f	class:RoadBlock
+getHitBox	RoadBlock.cpp	/^RoadBox RoadBlock::getHitBox() const$/;"	f	class:RoadBlock
+getLineArray	RoadBox.cpp	/^const std::vector<collision::LineHitBox> & RoadBox::getLineArray() const$/;"	f	class:RoadBox
+getRType	RoadBlock.cpp	/^RoadBlock::roadType RoadBlock::getRType() const$/;"	f	class:RoadBlock
+getRotation	RoadBlock.cpp	/^RoadBlock::rotation RoadBlock::getRotation() const$/;"	f	class:RoadBlock
 getSmallArcHitBox	RoadBox.cpp	/^	static std::vector<collision::LineHitBox> getSmallArcHitBox()$/;"	f	namespace:pv
 getStraightHitBox	RoadBox.cpp	/^	static std::vector<collision::LineHitBox> getStraightHitBox()$/;"	f	namespace:pv
 globalTime	Timer.cpp	/^sf::Time Timer::globalTime()$/;"	f	class:Timer
 grassTexture	RoadBlock.cpp	/^const sf::Texture RoadBlock::grassTexture = createFromFile<sf::Texture>(GRASS_TEXTURE_NAME);$/;"	m	class:RoadBlock	file:
 grassTexture	RoadBlock.hpp	/^		static const sf::Texture grassTexture;$/;"	m	class:RoadBlock
 hidden	Map.hpp	/^namespace hidden$/;"	n
-hitBox	RoadBox.hpp	/^		std::vector<collision::LineHitBox> hitBox;$/;"	m	class:RoadBox
 iterator	Map.hpp	/^		typedef std::list<RoadBlock>::iterator iterator;$/;"	t	class:Map
 keepCarOnRoad	game.cpp	/^void keepCarOnRoad(Car &car, Map &map, Map::iterator& it)$/;"	f
 left	RoadBlock.hpp	/^			left = 2, $/;"	e	enum:RoadBlock::rotation
@@ -93,6 +96,7 @@ loadFromFile	Map.cpp	/^void Map::loadFromFile(const std::string &fileName)$/;"	f
 m_BlockList	Map.hpp	/^		std::list<RoadBlock> m_BlockList;$/;"	m	class:Map
 m_acceleration	Car.hpp	/^		float m_acceleration;$/;"	m	class:Car
 m_duration	Timer.hpp	/^		sf::Time m_duration;$/;"	m	class:Timer
+m_hitBox	RoadBox.hpp	/^		std::vector<collision::LineHitBox> m_hitBox;$/;"	m	class:RoadBox
 m_hitBoxRadius	Car.hpp	/^		float m_hitBoxRadius;$/;"	m	class:Car
 m_maxSpeed	Car.hpp	/^		float m_maxSpeed;$/;"	m	class:Car
 m_oldTime	Timer.hpp	/^		sf::Time m_oldTime; \/\/Last time the clock ticked$/;"	m	class:Timer
@@ -107,6 +111,7 @@ main	main.cpp	/^int main(int argc, char **argv)$/;"	f
 mapEdit	mapEdit.cpp	/^	void mapEdit(sf::RenderWindow &window)$/;"	f	namespace:mapEdit
 mapEdit	mapEdit.cpp	/^namespace mapEdit$/;"	n	file:
 mapEdit	mapEdit.hpp	/^namespace mapEdit$/;"	n
+move	collision.cpp	/^	void LineHitBox::move(const sf::Vector2f &point2)$/;"	f	class:collision::LineHitBox
 norm	Car.cpp	/^float Car::norm(const sf::Vector2f &v) const$/;"	f	class:Car
 operator ++	RoadBlock.cpp	/^RoadBlock::roadType operator++(RoadBlock::roadType &r, int)$/;"	f
 operator ++	RoadBlock.cpp	/^RoadBlock::rotation operator++(RoadBlock::rotation &r, int nn)$/;"	f
@@ -139,11 +144,11 @@ sf	Map.hpp	/^namespace sf$/;"	n
 sf	RoadBlock.hpp	/^namespace sf$/;"	n
 sf	game.hpp	/^namespace sf$/;"	n
 sf	mapEdit.hpp	/^namespace sf$/;"	n
-smallArcHitBox	RoadBox.cpp	/^static const std::vector<collision::LineHitBox> smallArcHitBox = pv::getSmallArcHitBox();$/;"	v	file:
+smallArcHitBox	RoadBox.cpp	/^const std::vector<collision::LineHitBox> RoadBox::smallArcHitBox = pv::getSmallArcHitBox();$/;"	m	class:RoadBox	file:
 smallArcHitBox	RoadBox.hpp	/^		static const std::vector<collision::LineHitBox> smallArcHitBox;$/;"	m	class:RoadBox
 standard	RoadBlock.hpp	/^			standard = 0, $/;"	e	enum:RoadBlock::rotation
 straight	RoadBlock.hpp	/^			straight = 0, $/;"	e	enum:RoadBlock::roadType
-straightHitBox	RoadBox.cpp	/^static const std::vector<collision::LineHitBox> straightHitBox = pv::getStraightHitBox();$/;"	v	file:
+straightHitBox	RoadBox.cpp	/^const std::vector<collision::LineHitBox> RoadBox::straightHitBox = pv::getStraightHitBox();$/;"	m	class:RoadBox	file:
 straightHitBox	RoadBox.hpp	/^		static const std::vector<collision::LineHitBox> straightHitBox;$/;"	m	class:RoadBox
 straightTexture	RoadBlock.cpp	/^const sf::Texture RoadBlock::straightTexture = createFromFile<sf::Texture>(STRAIGHT_TEXTURE_NAME);$/;"	m	class:RoadBlock	file:
 straightTexture	RoadBlock.hpp	/^		static const sf::Texture straightTexture;$/;"	m	class:RoadBlock

@@ -8,6 +8,7 @@
 #include <SFML/Graphics/Transform.hpp>
 
 
+
 int main(int argc, char **argv)
 {
 
@@ -15,6 +16,16 @@ int main(int argc, char **argv)
 	winSettings.antialiasingLevel = 8;
 	sf::RenderWindow window(sf::VideoMode(800, 600), "Car Racing", sf::Style::Default, winSettings);
 	//window.setFramerateLimit(60);
+
+
+	sf::Transform transf;
+	RoadBlock block(RoadBlock::corner, RoadBlock::right);
+	RoadBox box = block.getHitBox();
+	std::vector<collision::LineHitBox> lines = box.getLineArray();
+	
+
+        return 	EXIT_SUCCESS;
+
 
 	//replace the menu by program arguments for now
 	if(argc >= 2)

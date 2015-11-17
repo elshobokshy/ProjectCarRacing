@@ -166,10 +166,10 @@ namespace collision
 		for(unsigned int i = 0; i < hitBox.size() && !collided; i++)
 		{
 			collided = collision(circleBox, hitBox[i]);
-			/*if(collided)
+			if(collided)
 			{
-				//std::cout<< "collision\n";
-			}*/
+				std::cout<< "collision\n";
+			}
 		}
 
 		return collided;

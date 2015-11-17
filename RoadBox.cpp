@@ -1,6 +1,7 @@
 #include "RoadBox.hpp"
 #include "RoadBlock.hpp"
 
+#include <iostream>
 
 /*
 All functions defined as static in this file are initializers for RoadBox's static variables (hit boxes).
@@ -95,7 +96,7 @@ RoadBox::RoadBox(const RoadBlock &roadBlock)
 	//to get the right hit box, we need to transform the default hit box, because no rotation is in it
 	sf::Transform transf;
 	transf.rotate(roadBlock.sf::Transformable::getRotation());
-
+	//std::cout<< transf.rotation();	
 	
 	 
 	RoadBlock::roadType t = roadBlock.getRType();
@@ -114,7 +115,8 @@ RoadBox::RoadBox(const RoadBlock &roadBlock)
 			break;
 		case RoadBlock::corner:
 			m_hitBox.resize(bigArcHitBox.size() + smallArcHitBox.size());
-			for(unsigned int i = 0; i < bigArcHitBox.size(); i++)
+			unsigned int i;
+			for(i = 0; i < bigArcHitBox.size(); i++)
 			{
 				m_hitBox[i] = LineHitBox
 				(
@@ -122,7 +124,8 @@ RoadBox::RoadBox(const RoadBlock &roadBlock)
 					,transf.transformPoint(bigArcHitBox[i].p2)
 				);
 			}
-			for(unsigned int i = 0; i < smallArcHitBox.size(); i++)
+			//std::cout<< bigArcHitBox.size();
+			for(; i < m_hitBox.size(); i++)
 			{
 				m_hitBox[i] = LineHitBox
 				(
