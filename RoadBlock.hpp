@@ -50,7 +50,8 @@ class RoadBlock : public sf::Drawable, public sf::Transformable
 
 		rotation getRotation() const;
 		roadType getRType() const;
-		
+	
+		float getRotationAsDegrees() const;
 		
 		void setRotation(rotation r);
 		void setType(roadType t);

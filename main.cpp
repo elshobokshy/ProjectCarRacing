@@ -19,12 +19,19 @@ int main(int argc, char **argv)
 
 
 	sf::Transform transf;
-	RoadBlock block(RoadBlock::corner, RoadBlock::right);
+	transf.rotate(180, 128, 128);
+	sf::Vector2f p(226, 224);
+	p = transf.transformPoint(p);
+	std::cout<< p.x<< " ; "<< p.y<< '\n';
+
+
+	RoadBlock block(RoadBlock::corner, RoadBlock::standard);
 	RoadBox box = block.getHitBox();
-	std::vector<collision::LineHitBox> lines = box.getLineArray();
+	const std::vector<collision::LineHitBox> lines = box.getLineArray();
 	
 
-        return 	EXIT_SUCCESS;
+	//std::cout<< ' ';
+       	//return 	EXIT_SUCCESS;
 
 
 	//replace the menu by program arguments for now

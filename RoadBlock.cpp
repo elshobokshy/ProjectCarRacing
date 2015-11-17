@@ -103,7 +103,7 @@ void RoadBlock::setType(roadType t)
 RoadBlock::rotation RoadBlock::getRotation() const
 {
 	float r = m_sprite.getRotation();
-	std::cout<< r<< '\n';
+	//std::cout<< r<< '\n';
 	switch(int(r))
 	{
 		case 90:
@@ -119,6 +119,13 @@ RoadBlock::rotation RoadBlock::getRotation() const
 			break;
 	}
 	return standard; //shall never be executed
+}
+
+
+
+float RoadBlock::getRotationAsDegrees() const
+{
+	return m_sprite.getRotation();
 }
 
 

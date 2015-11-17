@@ -30,10 +30,10 @@ namespace pv //private
 		hitBox[2] = LineHitBox(sf::Vector2f(121, 32), sf::Vector2f(256, 31));
 
 		//center the hitBox on (0, 0)
-		for(unsigned int i = 0; i < hitBox.size(); i++)
+		/*for(unsigned int i = 0; i < hitBox.size(); i++)
 		{
 			hitBox[i].move(posOffsetToCenter);
-		}
+		}*/
 
 		return hitBox;
 	}
@@ -50,10 +50,10 @@ namespace pv //private
 		hitBox[1] = LineHitBox(sf::Vector2f(226, 224), sf::Vector2f(256, 225));
 
 		//center the hitBox on (0, 0)
-		for(unsigned int i = 0; i < hitBox.size(); i++)
+		/*for(unsigned int i = 0; i < hitBox.size(); i++)
 		{
 			hitBox[i].move(posOffsetToCenter);
-		}
+		}*/
 
 		return hitBox;
 	}
@@ -71,10 +71,10 @@ namespace pv //private
 		hitBox[1] = LineHitBox(sf::Vector2f(225, 256), sf::Vector2f(225, 0)/*sf::Vector2f(256, 0), sf::Vector2f(256, 256)*/);
 
 		//center the hitBox on (0, 0)
-		for(unsigned int i = 0; i < hitBox.size(); i++)
+		/*for(unsigned int i = 0; i < hitBox.size(); i++)
 		{
 			hitBox[i].move(posOffsetToCenter);
-		}
+		}*/
 
 		return hitBox;
 	}
@@ -95,43 +95,48 @@ RoadBox::RoadBox(const RoadBlock &roadBlock)
 
 	//to get the right hit box, we need to transform the default hit box, because no rotation is in it
 	sf::Transform transf;
-	transf.rotate(roadBlock.sf::Transformable::getRotation());
-	//std::cout<< transf.rotation();	
+	transf.rotate(roadBlock.getRotationAsDegrees(), sf::Vector2f(RoadBlock::texSize / 2));
+	//std::cout<< (RoadBlock::texSize/2).x<< " ; "<< (RoadBlock::texSize/2).y<< '\n';
+	//std::cout<< roadBlock.sf::Transformable::getRotation()<< '\n';
 	
 	 
 	RoadBlock::roadType t = roadBlock.getRType();
 	switch(t)
 	{
 		case RoadBlock::straight:
-			m_hitBox.resize(straightHitBox.size());
-			for(unsigned int i = 0; i < m_hitBox.size(); i++)
 			{
-				m_hitBox[i] = LineHitBox
-				(
-					transf.transformPoint(straightHitBox[i].p1)
-					,transf.transformPoint(straightHitBox[i].p2)
-				);
+				m_hitBox.resize(straightHitBox.size());
+				for(unsigned int i = 0; i < m_hitBox.size(); i++)
+				{
+					m_hitBox[i] = LineHitBox
+						(
+						 transf.transformPoint(straightHitBox[i].p1)
+						 ,transf.transformPoint(straightHitBox[i].p2)
+						);
+				}
 			}
 			break;
 		case RoadBlock::corner:
-			m_hitBox.resize(bigArcHitBox.size() + smallArcHitBox.size());
-			unsigned int i;
-			for(i = 0; i < bigArcHitBox.size(); i++)
 			{
-				m_hitBox[i] = LineHitBox
-				(
-					transf.transformPoint(bigArcHitBox[i].p1)
-					,transf.transformPoint(bigArcHitBox[i].p2)
-				);
-			}
-			//std::cout<< bigArcHitBox.size();
-			for(; i < m_hitBox.size(); i++)
-			{
-				m_hitBox[i] = LineHitBox
-				(
-					transf.transformPoint(smallArcHitBox[i].p1)
-					,transf.transformPoint(smallArcHitBox[i].p2)
-				);
+				m_hitBox.resize(bigArcHitBox.size() + smallArcHitBox.size());
+				unsigned int i;
+				for(i = 0; i < bigArcHitBox.size(); i++)
+				{
+					m_hitBox[i] = LineHitBox
+						(
+						 transf.transformPoint(bigArcHitBox[i].p1)
+						 ,transf.transformPoint(bigArcHitBox[i].p2)
+						);
+				}
+				//std::cout<< bigArcHitBox.size();
+				for(i = 0; i < smallArcHitBox.size(); i++)
+				{
+					m_hitBox[i + bigArcHitBox.size()] = LineHitBox
+						(
+						 transf.transformPoint(smallArcHitBox[i].p1)
+						 ,transf.transformPoint(smallArcHitBox[i].p2)
+						);
+				}
 			}
 			break;
 		default: //shall never be used
