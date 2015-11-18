@@ -5,7 +5,9 @@
 #include <SFML/Graphics/RenderTarget.hpp>
 
 #include <cmath>
+#include <sstream> //type conversion
 #include <iostream>
+#include <cassert>
 
 #include "Map.hpp"
 #include "collision.hpp"
@@ -20,12 +22,24 @@ Car::Car(sf::Texture &tex, float maxSpeed)
 
 	sf::Vector2u texSize(tex.getSize());
 	m_sprite.setOrigin(float(texSize.x)/2.f, float(texSize.y)/2.f);
-	//m_speedVector = sf::Vector2f(0, 0);
 
-	//to take the included circle, take the min btw width and height
 	m_hitBoxRadius = 93/2;
 
 	m_maxSpeed = maxSpeed;
+	m_speed = 0;
+
+	m_font.loadFromFile("gameData/fonts/CANON.ttf");
+	m_speedIndicator.setFont(m_font);
+
+	std::stringstream stream;
+	stream<< int(m_speed);
+	std::string indicatorString;
+	stream>> indicatorString;
+	std::cout<< indicatorString<< '\n';
+
+	m_speedIndicator.setString(indicatorString);
+	m_speedIndicator.setCharacterSize(64);
+	
 
 	m_physicTimer.setDuration(sf::seconds(1./60.)); //60 fps
 	m_physicTimer.restart();
@@ -52,8 +66,9 @@ void Car::rotate(float rot)
 
 void Car::draw(sf::RenderTarget &target, sf::RenderStates states) const
 {
-	states.transform *= getTransform();
 	//states.transform.rotate(-90); //the car is not well orientated in the loaded image
+	target.draw(m_speedIndicator, states);
+	states.transform *= getTransform();
 	target.draw(m_sprite, states);
 }
 
@@ -117,6 +132,15 @@ void Car::apply_physics(Map &map)
 		m_physicTimer.restart();
 
 	}
+
+	//draw the speed at the right place
+	m_speedIndicator.setPosition(getPosition() - sf::Vector2f(400, 300));
+	std::stringstream stream;
+	stream<< int(m_speed);
+	std::string indicatorString;
+	stream>> indicatorString;
+
+	m_speedIndicator.setString(indicatorString);
 }
 
 

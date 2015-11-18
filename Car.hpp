@@ -7,6 +7,7 @@
 #include <SFML/Graphics/Drawable.hpp>
 #include <SFML/Graphics/Transformable.hpp>
 #include <SFML/Graphics/Sprite.hpp>
+#include <SFML/Graphics/Text.hpp>
 
 #include "Timer.hpp"
 #include "collision.hpp"
@@ -55,7 +56,8 @@ class Car : public sf::Drawable, public sf::Transformable
 
 		float m_maxSpeed;
 		float m_speed;
-
+		sf::Text m_speedIndicator;
+		sf::Font m_font;
 		
 		float m_hitBoxRadius;
 

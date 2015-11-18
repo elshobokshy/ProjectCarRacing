@@ -46,8 +46,8 @@ namespace pv //private
 		sf::Vector2f posOffsetToCenter( - RoadBlock::texSize/2);
 
 		std::vector<LineHitBox> hitBox(2);
-		hitBox[0] = LineHitBox(sf::Vector2f(225, 255), sf::Vector2f(226, 224));
-		hitBox[1] = LineHitBox(sf::Vector2f(226, 224), sf::Vector2f(256, 225));
+		hitBox[0] = LineHitBox(sf::Vector2f(225, 255), sf::Vector2f(233, 236));
+		hitBox[1] = LineHitBox(sf::Vector2f(233, 236), sf::Vector2f(256, 225));
 
 		//center the hitBox on (0, 0)
 		/*for(unsigned int i = 0; i < hitBox.size(); i++)
