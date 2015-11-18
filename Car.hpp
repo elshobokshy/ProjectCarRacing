@@ -18,6 +18,8 @@ namespace sf
 }
 
 
+class Map;
+
 
 
 class Car : public sf::Drawable, public sf::Transformable
@@ -30,7 +32,7 @@ class Car : public sf::Drawable, public sf::Transformable
 
 		void rotate(float rot);
 
-		void apply_physics();
+		void apply_physics(Map &map);
 
 		collision::CircleHitBox getHitBox() const;
 
@@ -39,6 +41,7 @@ class Car : public sf::Drawable, public sf::Transformable
 
 	private:
 		float norm(const sf::Vector2f &v) const;
+		float angle(const sf::Vector2f &v) const;
 	
 
 		//buffers used in physics

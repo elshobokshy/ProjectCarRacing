@@ -1,6 +1,7 @@
 #include "collision.hpp"
 #include "RoadBox.hpp"
 #include <cmath> //sqrt needed
+#include <cassert>
 
 #include <iostream>
 
@@ -158,7 +159,7 @@ namespace collision
 
 
 	
-	bool collision(const CircleHitBox &circleBox, const RoadBox &roadBox)
+	bool collision(const CircleHitBox &circleBox, const RoadBox &roadBox, LineHitBox &lineBox)
 	{
 		bool collided = false;
 		const std::vector<collision::LineHitBox> &hitBox = roadBox.getLineArray();
@@ -168,12 +169,91 @@ namespace collision
 			collided = collision(circleBox, hitBox[i]);
 			if(collided)
 			{
-				std::cout<< "collision\n";
+				//std::cout<< "collision\n";
+				lineBox = hitBox[i]; //save which line made the collision
 			}
 		}
 
 		return collided;
 	}
 
+
+	sf::Vector2f projection(const LineHitBox &lineBox,const sf::Vector2f &p)
+
+	{
+		sf::Vector2f A(lineBox.p1), B(lineBox.p2), C(p);
+		sf::Vector2f u,AC;
+
+		u.x = B.x - A.x; 
+
+		u.y = B.y - A.y; 
+
+		AC.x = C.x - A.x;
+
+		AC.y = C.y - A.y;
+
+		float ti = (u.x*AC.x + u.y*AC.y)/(u.x*u.x + u.y*u.y);
+
+		sf::Vector2f I;
+
+		I.x = A.x + ti*u.x;
+
+		I.y = A.y + ti*u.y;
+
+		return I;
+
+	}
+
+
+	sf::Vector2f normale(const LineHitBox &lineBox, const sf::Vector2f &p)
+
+	{
+		sf::Vector2f A(lineBox.p1), B(lineBox.p2), C(p);
+		sf::Vector2f AC,u,N;
+
+		u.x = B.x - A.x;  
+
+		u.y = B.y - A.y;
+
+		AC.x = C.x - A.x;  
+
+		AC.y = C.y - A.y;
+
+		float parenthesis = u.x*AC.y-u.y*AC.x;  // calcul une fois pour les deux
+
+		N.x = -u.y*(parenthesis);
+
+		N.y = u.x*(parenthesis);
+
+		// normalisons
+
+		float norme = std::sqrt(N.x*N.x + N.y*N.y);
+		//std::cout<< "norme = "<<norme<< '\n';
+		assert(norme != 0);
+
+		N.x/=norme;
+
+		N.y/=norme;
+
+		return N;
+
+	}
+
+
+	sf::Vector2f bounceVector(const sf::Vector2f &v, const sf::Vector2f &N)
+
+	{
+
+		sf::Vector2f v2;
+
+		float pscal = (v.x*N.x +  v.y*N.y);
+
+		v2.x = v.x -2*pscal*N.x;
+
+		v2.y = v.y -2*pscal*N.y;
+
+		return v2;
+
+	}
 
 } //namespace collision

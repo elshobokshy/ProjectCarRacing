@@ -7,7 +7,8 @@
 #include <cmath>
 #include <iostream>
 
-
+#include "Map.hpp"
+#include "collision.hpp"
 
 
 Car::Car(sf::Texture &tex, float maxSpeed)
@@ -57,7 +58,7 @@ void Car::draw(sf::RenderTarget &target, sf::RenderStates states) const
 }
 
 
-void Car::apply_physics()
+void Car::apply_physics(Map &map)
 {
 	if(m_physicTimer.ticked())
 	{
@@ -65,14 +66,9 @@ void Car::apply_physics()
 
 		sf::Transformable::rotate(m_rotation/**(currentSpeed / m_maxSpeed)*/);
 		float rotation = getRotation();
-
 		float accelFactor = m_physicTimer.getFullWaitedDuration().asSeconds();
 
-		//std::cout<< accelFactor * 60<< "\n";
-
 		//calculate the new speed with the acceleration
-		/*m_speedVector.x += std::cos(rotation*M_PI/180)*m_acceleration*accelFactor;
-		m_speedVector.y += std::sin(rotation*M_PI/180)*m_acceleration*accelFactor;*/
 		m_speed += accelFactor*m_acceleration;
 		if(m_speed > m_maxSpeed)
 		{
@@ -94,11 +90,31 @@ void Car::apply_physics()
 		move(posOffset);
 
 
+		//collisions tests
+		bool collided = false;
+		int i = 0;
+		collision::LineHitBox lineBox;
+		for(Map::iterator it = map.begin(); it != map.end() && !collided; it++)
+		{	
+			collided = collision::collision(getHitBox(), it->getHitBox(), lineBox);
+		}
+		if(collided)
+		{
+			move(-posOffset); //return to position before collision
+			posOffset = collision::bounceVector(
+			posOffset
+			,collision::normale(lineBox, getPosition())
+			);
+
+			move(posOffset);
+			setRotation(angle(posOffset));
+			std::cout<< getPosition().x<< " ; "<< getPosition().y<< '\n';
+		}
+
+
 		m_acceleration = 0;
 		m_physicTimer.restart();
 
-		//std::cout<< getPosition().x<< " ; "<< getPosition().y<< '\n';
-		//std::cout<< 60*accelFactor<< '\n';
 	}
 }
 
@@ -109,6 +125,21 @@ void Car::apply_physics()
 float Car::norm(const sf::Vector2f &v) const
 {
 	return std::sqrt((v.y*v.y) + (v.x*v.x));
+}
+
+
+
+float Car::angle(const sf::Vector2f &v) const
+{
+	float signY = v.y >= 0 ? 1 : -1;
+
+	float arcTan = std::atan(v.y / v.x >= 0 ? v.y/v.x : -v.y/v.x);
+
+	float addPi = v.x < 0 ? M_PI/2. : 0;
+
+	float ans = signY * (arcTan + addPi);
+
+	return ans * 180/M_PI;
 }
 
 

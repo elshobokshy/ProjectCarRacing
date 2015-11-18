@@ -118,10 +118,10 @@ namespace game
 			playerCar.accelerate(action.acceleration);	
 			playerCar.rotate(action.orientation);
 
-			playerCar.apply_physics();
+			playerCar.apply_physics(map);
 
 			//collisions tests
-			bool collided = false;
+			/*bool collided = false;
 			int i = 0;
 			for(Map::iterator it = map.begin(); it != map.end() && !collided; it++)
 			{	
@@ -130,7 +130,7 @@ namespace game
 			if(collided)
 			{
 				std::cout<< ++j<<"\n";
-			}
+			}*/
 
 			// \game physics /////////////////////////
 

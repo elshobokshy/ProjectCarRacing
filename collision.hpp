@@ -61,8 +61,17 @@ namespace collision
 	bool collision(const sf::Vector2f &point, const CircleHitBox &cercleBox);
 	bool collision(const CircleHitBox &cercleBox1, const CircleHitBox &cercleBox2);
 
-	bool collision(const CircleHitBox &circleBox, const RoadBox &roadBox);
+	bool collision(const CircleHitBox &circleBox, const RoadBox &roadBox, LineHitBox &lineBox);
 
+
+	//project p on lineBox
+	sf::Vector2f projection(const LineHitBox &lineBox,const sf::Vector2f &p);
+
+	//get the normale of lineBox
+	sf::Vector2f normale(const LineHitBox &lineBox, const sf::Vector2f &p);
+
+	//if v is a speed, the returned value is v after bounce, N is the normale of the line the object bounced on
+	sf::Vector2f bounceVector(const sf::Vector2f &v, const sf::Vector2f &N);
 
 } //namespace collision
 
