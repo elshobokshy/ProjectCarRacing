@@ -3,8 +3,8 @@
 ~Islam ALAAELDIN ALI ELSHOBOKSHY<br />
 ~Victor CREUSEL
 ## Further information:
-This project is a university project created to discover C++ and the SFML library on a more or less proffesionnel level. It was made in a two months time so it isn't yet finished.
-This project is still under developement, and will be continued even after the project dead line at a slower path.
+This project is a university project created to discover C++ and the SFML library on a more or less proffesionnel level. It was made in a two months time so it isn't yet finished.<br />
+This project is still under developement, and will be continued even after the project dead line at a slower path.<br />
 
 # HOW TO RUN THE GAME 
 ## Linux
@@ -13,6 +13,11 @@ This project is still under developement, and will be continued even after the p
 REFER TO THE "HOW TO EDIT THE MAP" THAT EXPLAINS HOW TO EDIT THE MAP.<br />
 3) Run the game normally using the command : ./carRacing<br />
 PS: You don't need to compile one more time after editing the map, just once at the start is good enough.<br />
+## What's needed to run the game
+The sfml library in furnished only for windows version.<br/>
+Therefore, you'll need to install it.<br/>
+On debian systems : sudo apt-get install libsfml-dev<br/>
+On other systems, it will much likely be something similar.
 
 ## Windows 
 1) Compile the program using the file : compiler.bat<br />
