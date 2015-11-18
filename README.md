@@ -8,23 +8,23 @@ This project is still under developement, and will be continued even after the p
 
 # HOW TO RUN THE GAME 
 ## Linux
-1) Use the command : make, to compile
-2) To create the map use the command : ./carRacing edit
-REFER TO THE "HOW TO EDIT THE MAP" THAT EXPLAINS HOW TO EDIT THE MAP.
-3) Run the game normally using the command : ./carRacing
-PS: You don't need to compile one more time after editing the map, just once at the start is good enough.
+1) Use the command : make, to compile<br />
+2) To create the map use the command : ./carRacing edit<br />
+REFER TO THE "HOW TO EDIT THE MAP" THAT EXPLAINS HOW TO EDIT THE MAP.<br />
+3) Run the game normally using the command : ./carRacing<br />
+PS: You don't need to compile one more time after editing the map, just once at the start is good enough.<br />
 
 ## Windows 
-1) Compile the program using the file : compiler.bat
-2) To edit the map open the file : wMapEdit.bat
-REFER TO THE "HOW TO EDIT THE MAP" THAT EXPLAINS HOW TO EDIT THE MAP.
-3) Run the game using the file : wGame.bat
+1) Compile the program using the file : compiler.bat<br />
+2) To edit the map open the file : wMapEdit.bat<br />
+REFER TO THE "HOW TO EDIT THE MAP" THAT EXPLAINS HOW TO EDIT THE MAP.<br />
+3) Run the game using the file : wGame.bat<br />
 
 # HOW TO EDIT THE MAP
-IMP : When the map editor is open, you MUST place the first block of the road at the top left of the screen, as this is where the car spawn at the start!
-1) Click on the left click of your mouse to change the two forms of the map either straight blocks on corner blocks.
-2) Click on the right click of your mouse to change the angle of each chosen block.
-3) Click on "spacebar" to place it when the cursor is inside the top left corner.
-4) You can move the screen afterwards using the right/left/up/down key to place the other blocks anywhere on the map.
-5) When you finish creating the map click on esc to close.
-PS: Please create a logic map.
+IMP : When the map editor is open, you MUST place the first block of the road at the top left of the screen, as this is where the car spawn at the start!<br />
+1) Click on the left click of your mouse to change the two forms of the map either straight blocks on corner blocks.<br />
+2) Click on the right click of your mouse to change the angle of each chosen block.<br />
+3) Click on "spacebar" to place it when the cursor is inside the top left corner.<br />
+4) You can move the screen afterwards using the right/left/up/down key to place the other blocks anywhere on the map.<br />
+5) When you finish creating the map click on esc to close.<br />
+PS: Please create a logic map.<br />
