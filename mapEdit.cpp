@@ -120,8 +120,6 @@ namespace mapEdit
 			
 			sf::Vector2i cursorBlockPosition = sf::Mouse::getPosition(window); //get the position, relative to the window
 			cursorBlock.setPosition( window.mapPixelToCoords(cursorBlockPosition) );
-			//cursorBlock.setPosition( window.mapPixelToCoords(sf::Mouse::getPosition(window)) );
-			std::cout<< window.mapPixelToCoords(sf::Mouse::getPosition(window)).x << " ; "<< window.mapPixelToCoords(sf::Mouse::getPosition(window)).y<< '\n';
 			cursorBlock.setRotation(action.rotation);
 			cursorBlock.setType(action.rtype);
 
@@ -150,11 +148,9 @@ namespace mapEdit
 					posNewBlock.y -= 256;
 				}
 
-				//sf::Vector2f posNewBlock();
 
 
 				editedMap.push_back(RoadBlock(action.rtype, action.rotation, posNewBlock));
-				//std::cout<< static_cast<int>(action.rtype)<< " ; "<< static_cast<int>(action.rotation)<< " ; " <<posNewBlock.x<< " / "<< posNewBlock.y<< '\n';
 			}
 
 			//calculating the coordinates of the new view
@@ -163,7 +159,6 @@ namespace mapEdit
 		
 			//game display
 			mapView.move(action.viewMove*viewFactor);
-			//std::cout<< viewFactor<< '\n';
 			window.setView(mapView);
 
 			window.clear(sf::Color::Black);
