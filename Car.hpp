@@ -40,6 +40,7 @@ class Car : public sf::Drawable, public sf::Transformable
 		virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
 	private:
+		//calculate the norm and angle of a vector
 		float norm(const sf::Vector2f &v) const;
 		float angle(const sf::Vector2f &v) const;
 	
@@ -52,12 +53,13 @@ class Car : public sf::Drawable, public sf::Transformable
 
 		Timer m_physicTimer; //timer that permit the physics to apply at every frame
 
-		//sf::Vector2f m_speedVector;
 		float m_maxSpeed;
 		float m_speed;
 
 		
 		float m_hitBoxRadius;
+
+		
 };
 
 

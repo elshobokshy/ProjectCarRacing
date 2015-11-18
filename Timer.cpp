@@ -10,7 +10,7 @@ sf::Clock Timer::programClock;
 
 
 
-Timer::Timer()
+Timer::Timer(): m_duration(sf::seconds(0))
 {
 }
 
@@ -63,10 +63,18 @@ sf::Time Timer::getExceededDuration() const
 void Timer::restart()
 {
 	sf::Time currentTime(globalTime());
-	m_oldTime = currentTime - getExceededDuration();
-	m_startingTimeShift = m_oldTime;
+	m_oldTime = m_startingTimeShift;
+	m_startingTimeShift = currentTime;
 }
 
+
+
+sf::Time Timer::swapTime()
+{
+	sf::Time currentTime = globalTime();
+	restart();
+	return currentTime - m_oldTime;;
+}
 
 
 
@@ -77,7 +85,7 @@ void Timer::autoSleep()
 	{
 		sf::Time currentTime(globalTime());
 		//std::cout<< (m_oldTime + m_duration - currentTime).asSeconds()<< '\n';
-		sf::sleep(m_oldTime + m_duration - currentTime);
+		sf::sleep(m_startingTimeShift + m_duration - currentTime);
 	}
 	restart();
 }

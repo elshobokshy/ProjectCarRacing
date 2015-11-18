@@ -108,6 +108,7 @@ void Car::apply_physics(Map &map)
 
 			move(posOffset);
 			setRotation(angle(posOffset));
+			m_speed /= 4;
 			std::cout<< getPosition().x<< " ; "<< getPosition().y<< '\n';
 		}
 

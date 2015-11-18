@@ -24,6 +24,8 @@ class Timer
 
 		void restart();
 
+		sf::Time swapTime();
+
 		void autoSleep();
 
 
