@@ -1,8 +1,5 @@
 # About this projet
-## CREDITS TO
-~Islam ALAAELDIN ALI ELSHOBOKSHY<br />
-~Victor CREUSEL
-## FURTHER INFORMATION
+## INFORMATION
 This project is a university project created to discover C++ and the SFML library on a more or less proffesionnel level. It was made in a two months time so it isn't yet finished.<br />
 This project is still under developement, and will be continued even after the project dead line at a slower path.
 
